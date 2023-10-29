@@ -1,7 +1,7 @@
 export default function HomeApp() {
     return (
         <div>
-            <h1>Home Giovane</h1>
+            <h1>HOME PAGE</h1>
         </div>
     )
 }
