@@ -1,7 +1,15 @@
-export default function uploadpage(){
+import RootLayout from "../layout"
+
+export default function uploadPage(){
+
+    const layoutProps = true
+
     return(
-        <div>
-            <h1>UPLOAD PAGE</h1>
-        </div>
+        <RootLayout layoutProps={layoutProps}>
+            <div>
+                <h1>UPLOAD PAGE</h1>
+            </div>
+        </RootLayout>
     )
+
 }

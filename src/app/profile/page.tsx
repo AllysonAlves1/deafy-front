@@ -1,7 +1,15 @@
-export default function profilepage(){
+import RootLayout from "../layout"
+
+export default function profilePage(){
+
+    const layoutProps = true
+
     return(
-        <div>
-            <h1>PROFILE PAGE</h1>
-        </div>
+        <RootLayout layoutProps={layoutProps}>
+            <div>
+                <h1>PROFILE PAGE</h1>
+            </div>
+        </RootLayout>
     )
+
 }

@@ -1,7 +1,15 @@
+import RootLayout from "../layout"
+
 export default function searchpage(){
+
+    const layoutProps = true
+    
     return(
-        <div>
-            <h1>SEARCH PAGE</h1>
-        </div>
+        <RootLayout layoutProps={layoutProps}>
+            <div>
+                <h1>SEARCH PAGE</h1>
+            </div>
+        </RootLayout>    
     )
+    
 }
