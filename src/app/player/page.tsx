@@ -1,4 +1,6 @@
 import RootLayout from "../layout"
+import Play from "../components/play/play"
+import Subtitle from "../components/play/subtitle"
 
 export default function playerPage(){
 
@@ -6,9 +8,8 @@ export default function playerPage(){
 
     return(
         <RootLayout layoutProps={layoutProps}>
-            <div>
-                <h1>PLAYER PAGE</h1>
-            </div>
+            <Play></Play>
+            <Subtitle></Subtitle>
         </RootLayout>
     )
     

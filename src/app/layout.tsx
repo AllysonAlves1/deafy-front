@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function rootLayout({
   children,
-  layoutProps
+  layoutProps //Propriedade true or false para dizer se o layout vai ser renderizado ou não
 }: {
   children: React.ReactNode,
   layoutProps: boolean
