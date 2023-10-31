@@ -31,7 +31,7 @@ export default function rootLayout({
       <html lang="pt-br">
         <body className={inter.className}>
           {children}
-          <div className="sticky bottom-0 flex justify-around bg-white p-1">
+          <div className="fixed bottom-0 flex justify-around bg-white p-1 w-screen">
             <Link href="/home">
               <HomeIcon className="w-10 text-black" />
             </Link>
