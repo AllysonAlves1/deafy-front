@@ -1,15 +1,22 @@
-import Image from "next/image"
+import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, PlayPauseIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 const Play = () => {
-    return(
-        <div>
-            <Image src="" alt="" width={50} height={50}></Image>
-            <h1>Nome da Musica/PodCast</h1>
-            <h3>Autor</h3>
-            <Image src="" alt="" width={50} height={50}></Image>
-            {/*Contagem das vizualizações, por exemplo: Image (8)  */}
-            <p>BARRA CONTENDO O TEMPO DA MUSICA, BOTAO DE PLAY/PAUSE e SKIP</p>
-        </div>
-    )
-}
+  return (
+    <div className="p-4 flex flex-col gap-4">
+      <div className="mx-auto">
+        <Image src="/nota-musica.avif" alt="" width={300} height={300} />
+      </div>
+      <div className="flex flex-col">
+        <p className="text-sm">Nome da Musica/PodCast</p>
+        <p className="text-sm">Autor</p>
+      </div>
+      <div className="flex justify-around">
+        <ChevronDoubleLeftIcon className="w-8"/>
+        <PlayPauseIcon className="w-8"/>
+        <ChevronDoubleRightIcon className="w-8"/>
+      </div>
+    </div>
+  );
+};
 
 export default Play;

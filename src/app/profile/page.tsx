@@ -1,6 +1,6 @@
 import RootLayout from "../layout"
 
-export default function profilePage(){
+export default function ProfilePage(){
 
     const layoutProps = true
 
