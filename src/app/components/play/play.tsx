@@ -4,7 +4,7 @@ const Play = () => {
   return (
     <div className="p-4 flex flex-col gap-4">
       <div className="mx-auto">
-        <Image src="/nota-musica.avif" alt="" width={300} height={300} />
+        <Image src="/notamusica.png" alt="" width={300} height={300} />
       </div>
       <div className="flex flex-col">
         <p className="text-sm">Nome da Musica/PodCast</p>

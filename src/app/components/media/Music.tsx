@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import musicaImg from "../../../../public/nota-musica.png"
+import musicaImg from "../../../../public/notamusica.png"
 
 export default function Music() {
   return (

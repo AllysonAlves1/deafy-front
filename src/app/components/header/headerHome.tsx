@@ -14,7 +14,7 @@ export default function HeaderHome() {
         />
       </Link>
       <Link href="">
-        <Image src="/config.svg" alt="" width={50} height={50} className="bg-white"/>
+        <Image src="/config.svg" alt="" width={50} height={50}/>
       </Link>
     </div>
   );
