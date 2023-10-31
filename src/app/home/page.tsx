@@ -13,6 +13,8 @@ export default function HomePage() {
         <div className="flex gap-2">
           <Music></Music>
           <Music></Music>
+          <Music></Music>
+          <Music></Music>
         </div>
         <h1 className="text-lg">Podcasts</h1>
         <div className="flex gap-2">

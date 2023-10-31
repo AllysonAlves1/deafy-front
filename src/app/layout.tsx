@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
 import "./globals.css";
-import {
-  ArrowUpTrayIcon,
-  HomeIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
-import { UserIcon } from "@heroicons/react/24/solid";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import SideBar from "./components/bar/sideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,23 +23,7 @@ export default function rootLayout({
       <html lang="pt-br">
         <body className={inter.className}>
           {children}
-          <div className="fixed bottom-0 flex justify-around bg-white p-1 w-screen">
-            <Link href="/home">
-              <HomeIcon className="w-10 text-black" />
-            </Link>
-
-            <Link href="/search">
-              <MagnifyingGlassIcon className="w-10 text-black" />
-            </Link>
-
-            <Link href="/upload">
-              <ArrowUpTrayIcon className="w-10 text-black" />
-            </Link>
-
-            <Link href="/profile" style={{ color: "white" }}>
-              <UserCircleIcon className="w-10 text-black" />
-            </Link>
-          </div>
+          <SideBar />
         </body>
       </html>
     );

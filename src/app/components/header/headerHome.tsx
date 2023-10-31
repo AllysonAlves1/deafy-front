@@ -1,20 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
+import deafyicon from "../../../../public/deafyicon.png";
+import { Cog8ToothIcon } from "@heroicons/react/24/solid";
 
 export default function HeaderHome() {
+  // Quando tivermos na página de perfil(profile), o ícone de configuração será substituido por o de sair
+
   return (
-    <div className="flex justify-between mx-4 my-2">
-      <Link href="#">
-        <Image
-          src="/deafyicon.png"
-          style={{ cursor: "pointer" }}
-          alt="Deafy Icon"
-          width={50}
-          height={50}
-        />
-      </Link>
+    <div className="flex justify-between px-4 py-2 items-center bg-slate-800">
+      <Image
+        src={deafyicon}
+        alt="Deafy Icon"
+        className="w-16"
+      />
       <Link href="">
-        <Image src="/config.svg" alt="" width={50} height={50}/>
+        <Cog8ToothIcon className="text-white w-11" />
       </Link>
     </div>
   );
