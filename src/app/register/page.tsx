@@ -1,6 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import RootLayout from "../layout"
+import Label from "../components/label/label"
+import deafyicon from '../../../public/deafyicon.png'
+import Button from "../components/button/button"
 
 export default function register(){
 
@@ -8,28 +11,33 @@ export default function register(){
 
     return(
         <RootLayout layoutProps={layoutProps}>
-            <div>
-                <header>
-                    <h1>Tela de Registro</h1>
-                </header>
-                <div>
+            <div className="flex flex-col items-center h-screen gap-2 bg-slate-800 pt-12">
+                <div className="flex flex-col items-center">
+
+                    <Image
+                        src={deafyicon}
+                        style={{ cursor: "pointer" }}
+                        alt="Deafy Icon"
+                        className="w-20"
+                    />
+
                     <form action="" method="post">
-                        <label htmlFor="">Nome</label>
-                        <input type="text" name="nome" id="nome" placeholder="Digite seu nome"/>
 
-                        <label htmlFor="">E-mail</label>
-                        <input type="email" name="email" id="email" placeholder="Digite seu E-mail"/>
+                        <Label nome="Nome"/>
 
-                        <label htmlFor="">Senha</label>
-                        <input type="password" name="senha" id="senha" placeholder="Digite sua senha"/>
+                        <Label nome="E-mail"/>
 
-                        <label htmlFor="">Confirme sua senha</label>
-                        <input type="password" name="senha" id="senha" placeholder="Digite sua senha novamente"/>
+                        <Label nome="Senha"/>
 
-                        <input type="checkbox" name="" id="" />
-                        <label htmlFor="">Aceito os termos.</label>
+                        <Label nome="Confirme sua senha"/>
 
-                        <button type="submit">Registrar!</button>
+                        <div className="flex flex-col items-center gap-1">
+                            <div className="flex gap-1">
+                                <input type="checkbox" name="" id="" />
+                                <label htmlFor="">Aceito os termos.</label>
+                            </div>
+                            <Button nome="Registrar"/>
+                        </div>
                     </form>
                 </div>
 
@@ -46,9 +54,9 @@ export default function register(){
                     </form>
                 </div>
 
-                <div>
+                <div className="flex flex-col items-center gap-1">
                     <h3>Já tem conta?</h3>
-                    <Link href="/login">Login</Link>
+                    <Link className="hover:underline" href="/login">Login</Link>
                 </div>
             </div>
         </RootLayout>

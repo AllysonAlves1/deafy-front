@@ -19,7 +19,7 @@ export default function ProfilePage(){
                 <div className="flex flex-col gap-2 items-center">
                     <Label nome="Nome"/>
                     <Label nome="Senha"/>
-                    <Button />
+                    <Button nome="Entrar"/>
                 </div>
             </div>
         </RootLayout>

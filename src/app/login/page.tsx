@@ -11,7 +11,7 @@ export default function login() {
 
     return (
         <RootLayout layoutProps={layoutProps}>
-            <div className="flex flex-col items-center h-screen bg-slate-800 pt-12">
+            <div className="flex flex-col items-center h-screen gap-2 bg-slate-800 pt-12">
 
                 <Image
                     src={deafyicon}
@@ -20,16 +20,16 @@ export default function login() {
                     className="w-40"
                 />
 
-                <div className="flex flex-col gap-2 items-center">
+                <div className="flex flex-col gap-1 items-center">
                         <Label nome='E-mail'/>
                         <Label nome='Senha'/>
-                        <Button />
+                        <Button nome='Login'/>
                 </div>
 
-                <h2>Ou</h2>
+                <div className="flex flex-col gap-1 items-center">
+                    <h2>Ou</h2>
 
-                <div>
-                    <form action="" method="post">
+                    <form className= "flex gap-1" action="" method="post">
                         <button type="submit">
                             <Image src="SocialImgs/icons8-google-logo.svg" alt="" width={25} height={25}></Image>
                         </button>
@@ -39,9 +39,9 @@ export default function login() {
                     </form>
                 </div>
 
-                <div>
+                <div className="flex flex-col items-center">
                     <h3>Não tem conta?</h3>
-                    <Link href="/register">Registro</Link>
+                    <Link className="hover:underline" href="/register">Registre-se</Link>
                 </div>
 
             </div>
