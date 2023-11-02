@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import RootLayout from '../layout'
+import deafyicon from '../../../public/deafyicon.png'
+import Label from '../components/label/label'
+import Button from '../components/button/button'
 
 export default function login() {
 
@@ -8,23 +11,20 @@ export default function login() {
 
     return (
         <RootLayout layoutProps={layoutProps}>
-            <div>
+            <div className="flex flex-col items-center h-screen bg-slate-800 pt-12">
 
-                <header>
-                    <h1>Tela de Login</h1>
-                </header>
+                <Image
+                    src={deafyicon}
+                    style={{ cursor: "pointer" }}
+                    alt="Deafy Icon"
+                    className="w-40"
+                />
 
-                <form action="" method="post">
-
-                    <label htmlFor="">E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu E-mail" />
-
-                    <label htmlFor="">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" />
-
-                    <button type="submit">Logar!</button>
-
-                </form>
+                <div className="flex flex-col gap-2 items-center">
+                        <Label nome='E-mail'/>
+                        <Label nome='Senha'/>
+                        <Button />
+                </div>
 
                 <h2>Ou</h2>
 
