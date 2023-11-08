@@ -11,7 +11,7 @@ export default function register(){
 
     return(
         <RootLayout layoutProps={layoutProps}>
-            <div className="flex flex-col items-center h-screen gap-2 bg-slate-800 pt-12">
+            <div className="flex flex-col items-center justify-center h-screen gap-2 bg-black">
                 <div className="flex flex-col items-center">
 
                     <Image
@@ -21,8 +21,10 @@ export default function register(){
                         className="w-20"
                     />
 
-                    <form action="" method="post">
+                    <h1 className="text-2xl">Registro</h1>
 
+                    <form action="" method="post">
+                        
                         <Label nome="Nome"/>
 
                         <Label nome="E-mail"/>
