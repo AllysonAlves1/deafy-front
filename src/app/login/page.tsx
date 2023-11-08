@@ -11,16 +11,18 @@ export default function login() {
 
     return (
         <RootLayout layoutProps={layoutProps}>
-            <div className="flex flex-col items-center h-screen gap-2 bg-slate-800 pt-12">
-
+            <div className="flex flex-col items-center justify-center h-screen gap-2 bg-black">
+                
                 <Image
                     src={deafyicon}
                     style={{ cursor: "pointer" }}
                     alt="Deafy Icon"
-                    className="w-40"
+                    className="w-20"
                 />
+                
 
                 <div className="flex flex-col gap-1 items-center">
+                        <h1 className="text-2xl">Login</h1>
                         <Label nome='E-mail'/>
                         <Label nome='Senha'/>
                         <Button nome='Login'/>
