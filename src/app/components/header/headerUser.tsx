@@ -14,7 +14,7 @@ export default function HeaderUser() {
           className="w-16"
         />
       </Link>
-      <Link href="">
+      <Link href="/login">
         <ArrowLeftOnRectangleIcon className="text-white w-11"/>
       </Link>
     </div>
