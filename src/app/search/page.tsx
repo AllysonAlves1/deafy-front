@@ -10,9 +10,6 @@ export default function SearchPage(){
         <RootLayout layoutProps={layoutProps}>
             <HeaderHome />
             <SearchBar />
-            <div>
-                <h1>SEARCH PAGE</h1>
-            </div>
         </RootLayout>    
     )
     
