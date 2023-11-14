@@ -10,8 +10,8 @@ export default function uploadPage(){
         <RootLayout layoutProps={layoutProps}>
             <HeaderHome />
             <SendMedia />
-            <div>
-                <h1>UPLOAD PAGE</h1>
+            <div className="flex">
+                <h1>Meus Uploads:</h1>
             </div>
         </RootLayout>
     )
