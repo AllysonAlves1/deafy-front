@@ -1,15 +1,17 @@
 import RootLayout from "../layout";
 import Play from "../components/play/play";
 import Subtitle from "../components/play/subtitle";
+import HeaderHome from "../components/header/headerHome";
 
 export default function PlayerPage() {
-  const layoutProps = false;
+  const layoutProps = true;
 
   return (
     <RootLayout layoutProps={layoutProps}>
       <div>
-        <Play></Play>
-        <Subtitle></Subtitle>
+        <HeaderHome />
+        <Play />
+        <Subtitle />
       </div>
     </RootLayout>
   );

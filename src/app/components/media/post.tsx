@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import musicaImg from "../../../../public/notamusica.png"
 
-export default function PodCast(){
+export default function Post(){
     return(
         <Link href="/player">
             <div className="flex flex-col justify-center">

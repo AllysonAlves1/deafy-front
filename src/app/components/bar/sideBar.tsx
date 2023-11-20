@@ -6,24 +6,41 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-export default function SideBar() {
+export default function SideBar({ children }: any) {
   return (
-    <div className="absolute left-0 top-0 hidden flex-col justify-between bg-white p-1 h-full sm:hidden md:flex lg:flex">
-      <Link href="/home">
-        <HomeIcon className="w-10 text-black hover:text-zinc-700"/>
-      </Link>
+    <div className="flex">
+      <div className="fixed min-h-screen hidden sm:hidden md:flex bg-slate-800 md:w-[20%] lg:w-[15%] p-5">
+        <div className="flex flex-col gap-10">
+          <Link href="/home">
+            <div className="flex items-center gap-2">
+              <HomeIcon className="w-10" />
+              <span className="text-2xl">Início</span>
+            </div>
+          </Link>
 
-      <Link href="/search">
-        <MagnifyingGlassIcon className="w-10 text-black hover:text-zinc-700" />
-      </Link>
+          <Link href="/search">
+            <div className="flex items-center gap-2">
+              <MagnifyingGlassIcon className="w-10" />
+              <span className="text-2xl">Buscar</span>
+            </div>
+          </Link>
 
-      <Link href="/upload">
-        <ArrowUpTrayIcon className="w-10 text-black hover:text-zinc-700" />
-      </Link>
+          <Link href="/upload">
+            <div className="flex items-center gap-2">
+              <ArrowUpTrayIcon className="w-10" />
+              <span className="text-2xl">Uploads</span>
+            </div>
+          </Link>
 
-      <Link href="/profile">
-        <UserCircleIcon className="w-10 text-black hover:text-zinc-700" />
-      </Link>
+          <Link href="/profile">
+            <div className="flex items-center gap-2">
+              <UserCircleIcon className="w-10" />
+              <span className="text-2xl">Perfil</span>
+            </div>
+          </Link>
+        </div>
+      </div>
+      <main className="w-full md:ml-[20%] lg:ml-[15%]">{children}</main>
     </div>
   );
 }

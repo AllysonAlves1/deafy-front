@@ -1,4 +1,3 @@
-import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, PlayPauseIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 const Play = () => {
   return (
@@ -7,13 +6,13 @@ const Play = () => {
         <Image src="/notamusica.png" alt="" width={300} height={300} />
       </div>
       <div className="flex flex-col">
-        <p className="text-sm">Nome da Musica/PodCast</p>
-        <p className="text-sm">Autor</p>
+        <p className="text-sm">I Wonder</p>
+        <p className="text-sm">Kayne West</p>
       </div>
       <div className="flex justify-around">
-        <ChevronDoubleLeftIcon className="w-8"/>
-        <PlayPauseIcon className="w-8"/>
-        <ChevronDoubleRightIcon className="w-8"/>
+        <audio controls className="w-full">
+          <source src="./audios/IWonder.mp3" type="audio/mpeg"/>
+        </audio>
       </div>
     </div>
   );
