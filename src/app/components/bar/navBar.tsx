@@ -8,21 +8,21 @@ import {
   
   export default function NavBar() {
     return (
-      <div className="fixed bottom-0 flex justify-around bg-white p-1 w-screen sm:flex md:hidden lg:hidden">
+      <div className="fixed bottom-0 flex justify-around bg-slate-800 p-2 w-screen sm:flex md:hidden lg:hidden">
         <Link href="/home">
-          <HomeIcon className="w-10 text-black hover:text-zinc-700"/>
+          <HomeIcon className="w-10 text-white hover:text-zinc-700"/>
         </Link>
   
         <Link href="/search">
-          <MagnifyingGlassIcon className="w-10 text-black hover:text-zinc-700" />
+          <MagnifyingGlassIcon className="w-10 text-white hover:text-zinc-700" />
         </Link>
   
         <Link href="/upload">
-          <ArrowUpTrayIcon className="w-10 text-black hover:text-zinc-700" />
+          <ArrowUpTrayIcon className="w-10 text-white hover:text-zinc-700" />
         </Link>
   
         <Link href="/profile">
-          <UserCircleIcon className="w-10 text-black hover:text-zinc-700" />
+          <UserCircleIcon className="w-10 text-white hover:text-zinc-700" />
         </Link>
       </div>
     );

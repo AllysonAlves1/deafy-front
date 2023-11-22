@@ -13,29 +13,29 @@ export default function SideBar({ children }: any) {
         <div className="flex flex-col gap-10">
           <Link href="/home">
             <div className="flex items-center gap-2">
-              <HomeIcon className="w-10" />
-              <span className="text-2xl">Início</span>
+              <HomeIcon className="w-10 text-white" />
+              <span className="text-2xl text-white">Início</span>
             </div>
           </Link>
 
           <Link href="/search">
             <div className="flex items-center gap-2">
-              <MagnifyingGlassIcon className="w-10" />
-              <span className="text-2xl">Buscar</span>
+              <MagnifyingGlassIcon className="w-10 text-white" />
+              <span className="text-2xl text-white">Buscar</span>
             </div>
           </Link>
 
           <Link href="/upload">
             <div className="flex items-center gap-2">
-              <ArrowUpTrayIcon className="w-10" />
-              <span className="text-2xl">Uploads</span>
+              <ArrowUpTrayIcon className="w-10 text-white" />
+              <span className="text-2xl text-white">Uploads</span>
             </div>
           </Link>
 
           <Link href="/profile">
             <div className="flex items-center gap-2">
-              <UserCircleIcon className="w-10" />
-              <span className="text-2xl">Perfil</span>
+              <UserCircleIcon className="w-10 text-white" />
+              <span className="text-2xl text-white">Perfil</span>
             </div>
           </Link>
         </div>

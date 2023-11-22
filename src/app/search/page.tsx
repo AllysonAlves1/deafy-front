@@ -1,16 +1,16 @@
-import HeaderHome from "../components/header/headerHome"
-import SearchBar from "../components/searchbar/searchBar"
-import RootLayout from "../layout"
+import HeaderHome from "../components/header/headerHome";
+import SearchBar from "../components/searchbar/searchBar";
+import RootLayout from "../layout";
 
-export default function SearchPage(){
+export default function SearchPage() {
+  const layoutProps = true;
 
-    const layoutProps = true
-    
-    return(
-        <RootLayout layoutProps={layoutProps}>
-            <HeaderHome />
-            <SearchBar />
-        </RootLayout>    
-    )
-    
+  return (
+    <RootLayout layoutProps={layoutProps}>
+      <HeaderHome />
+      <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col">
+        <SearchBar />
+      </div>
+    </RootLayout>
+  );
 }

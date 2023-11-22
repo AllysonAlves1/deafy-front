@@ -12,7 +12,7 @@ export default function ProfilePage(){
     return(
         <RootLayout layoutProps={layoutProps}>
             <HeaderUser />
-            <div className="flex flex-col items-center h-screen">
+            <div className="flex flex-col items-center h-screen bg-neutral-200 dark:bg-neutral-900">
                 <div className="flex items-center my-10 gap-2">
                     <Image className="rounded-full w-36" src={notamusica} alt="generico"/>
                     <Button nome="Alterar"/>

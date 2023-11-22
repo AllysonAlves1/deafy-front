@@ -1,6 +1,6 @@
 import RootLayout from "../layout";
 import HeaderHome from "../components/header/headerHome";
-import Audio from "../components/media/audio";
+import Category from "../components/category/category";
 
 export default function HomePage() {
   const layoutProps = true;
@@ -8,17 +8,9 @@ export default function HomePage() {
   return (
     <RootLayout layoutProps={layoutProps}>
       <HeaderHome></HeaderHome>
-      <div className="h-screen px-4 flex flex-col gap-4">
-        <h1 className="text-lg">Músicas</h1>
-        <div className="flex gap-2">
-          <Audio></Audio>
-          <Audio></Audio>
-        </div>
-        <h1 className="text-lg">Podcasts</h1>
-        <div className="flex gap-2">
-          <Audio></Audio>
-          <Audio></Audio>
-        </div>
+      <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col gap-4">
+        <Category category="Músicas"/>
+        <Category category="Podcasts"/>
       </div>
     </RootLayout>
   );

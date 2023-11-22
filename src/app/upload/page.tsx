@@ -1,3 +1,4 @@
+import Category from "../components/category/category";
 import HeaderHome from "../components/header/headerHome";
 import Audio from "../components/media/audio";
 import SendMedia from "../components/sendMedia/sendMedia";
@@ -10,12 +11,8 @@ export default function uploadPage() {
     <RootLayout layoutProps={layoutProps}>
       <HeaderHome />
       <SendMedia />
-      <div className="h-screen px-4 flex flex-col gap-4">
-        <h1 className="text-lg">Meus Uploads</h1>
-        <div className="flex gap-2">
-          <Audio></Audio>
-          <Audio></Audio>
-        </div>
+      <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col">
+        <Category category="Meus Uploads" />
       </div>
     </RootLayout>
   );
