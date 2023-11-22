@@ -1,5 +1,5 @@
 import RootLayout from "../layout";
-import HeaderHome from "../components/header/headerHome";
+import HeaderHome from "../components/header/header";
 import Category from "../components/category/category";
 
 export default function HomePage() {

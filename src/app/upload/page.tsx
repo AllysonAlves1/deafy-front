@@ -1,5 +1,5 @@
 import Category from "../components/category/category";
-import HeaderHome from "../components/header/headerHome";
+import HeaderHome from "../components/header/header";
 import Audio from "../components/media/audio";
 import SendMedia from "../components/sendMedia/sendMedia";
 import RootLayout from "../layout";

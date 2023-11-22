@@ -1,4 +1,4 @@
-import HeaderUser from "../components/header/headerUser"
+import Header from "../components/header/header"
 import RootLayout from "../layout"
 import notamusica from "../../../public/notamusica.png"
 import Image from "next/image"
@@ -11,7 +11,7 @@ export default function ProfilePage(){
 
     return(
         <RootLayout layoutProps={layoutProps}>
-            <HeaderUser />
+            <Header />
             <div className="flex flex-col items-center h-screen bg-neutral-200 dark:bg-neutral-900">
                 <div className="flex items-center my-10 gap-2">
                     <Image className="rounded-full w-36" src={notamusica} alt="generico"/>

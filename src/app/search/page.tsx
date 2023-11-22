@@ -1,4 +1,4 @@
-import HeaderHome from "../components/header/headerHome";
+import HeaderHome from "../components/header/header";
 import SearchBar from "../components/searchbar/searchBar";
 import RootLayout from "../layout";
 

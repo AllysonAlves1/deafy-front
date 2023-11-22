@@ -1,52 +1,46 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import RootLayout from '../layout'
-import deafyicon from '../../../public/deafyicon.png'
-import Label from '../components/label/label'
-import Button from '../components/button/button'
+import Image from "next/image";
+import Link from "next/link";
+import RootLayout from "../layout";
+import deafyicon from "../../../public/deafyicon.png";
+import Label from "../components/label/label";
+import Button from "../components/button/button";
 
 export default function login() {
+  const layoutProps = false;
 
-    const layoutProps = false
-
-    return (
-        <RootLayout layoutProps={layoutProps}>
-            <div className="flex flex-col items-center justify-center h-screen gap-2 bg-black">
-                
-                <Image
-                    src={deafyicon}
-                    style={{ cursor: "pointer" }}
-                    alt="Deafy Icon"
-                    className="w-20"
-                />
-                
-
-                <div className="flex flex-col gap-1 items-center">
-                        <h1 className="text-2xl">Login</h1>
-                        <Label nome='E-mail'/>
-                        <Label nome='Senha'/>
-                        <Button nome='Login'/>
-                </div>
-
-                <div className="flex flex-col gap-1 items-center">
-                    <h2>Ou</h2>
-
-                    <form className= "flex gap-1" action="" method="post">
-                        <button type="submit">
-                            <Image src="SocialImgs/icons8-google-logo.svg" alt="" width={25} height={25}></Image>
-                        </button>
-                        <button type="submit">
-                            <Image src="SocialImgs/icons8-facebook.svg" alt="" width={25} height={25}></Image>
-                        </button>
-                    </form>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <h3>Não tem conta?</h3>
-                    <Link className="hover:underline" href="/register">Registre-se</Link>
-                </div>
-
-            </div>
-        </RootLayout>
-    )
+  return (
+    <RootLayout layoutProps={layoutProps}>
+      <div className="flex flex-col items-center justify-center h-screen bg-neutral-700">
+        <div className="bg-neutral-900 rounded-3xl w-[80%] md:w-[50%] lg:w-[40%] h-[70%] p-10 flex flex-col gap-5">
+          <div className="flex flex-col justify-center items-center">
+            <Image
+              src={deafyicon}
+              style={{ cursor: "pointer" }}
+              alt="Deafy Icon"
+              className="w-32"
+            />
+            <h1 className="text-3xl text-white font-bold">Entrar na Deafy</h1>
+          </div>
+          <div className="flex flex-col items-center gap-4">
+            <Label nome="E-mail" />
+            <Label nome="Senha" />
+            <Button nome="Login" />
+            <Link href="">
+              <p className="text-neutral-200 hover:underline hover:text-neutral-300">
+                Esqueceu sua senha?
+              </p>
+            </Link>
+          </div>
+          <div className="flex gap-2">
+            <p className="text-white">Não tem uma conta?</p>
+            <Link href="/register">
+              <p className="text-white font-semibold hover:underline hover:text-neutral-200">
+                Cadastre-se
+              </p>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </RootLayout>
+  );
 }
