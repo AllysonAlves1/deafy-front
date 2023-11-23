@@ -1,19 +1,67 @@
+'use client';
+
+import { useState, useEffect, useRef } from "react";
+
 export default function SendMedia() {
+
+  
+  const [showModal, setShowModal] = useState(false);
+  
+  const openModal = () => {
+    setShowModal(true);
+  }
+  
+  const closeModal = () => {
+    setShowModal(false);
+  }
+  
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden'; // Desabilita o scroll
+    } else {
+      document.body.style.overflow = 'unset'; // Habilita o scroll
+    }
+  }, [showModal]);
+
   return (
-    <form className="flex items-center space-x-6 bg-white p-4">
-      <label className="block">
-        <span className="sr-only">Escolher arquivo</span>
-        <input
-          type="file"
-          className="block w-full text-sm text-slate-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-violet-50 file:text-blue-700
-      hover:file:bg-violet-100
-    "
-        />
-      </label>
-    </form>
+    <div className="flex flex-col justify-center items-center">
+      <button onClick={openModal} className="flex items-center space-x-6 bg-white p-4 w-full text-black justify-center">
+        Enviar nova mídia
+      </button>
+      {showModal && (
+        <div className="flex fixed h-full items-end w-fit">
+          <div className="flex flex-col bg-slate-800 text-center rounded-lg p-6 w-fit">
+            <h1>Preencha os campos</h1>
+            <form action="" method="post" className="flex flex-col">
+              <label htmlFor="title">Título</label>
+              <input type="text" name="title" id="title" />
+              <div>
+                Imagem
+              <input type="file" name="image" id="image" />
+              </div>
+              <div>
+                Áudio
+              <input type="file" name="file" id="file" />
+              </div>
+              <div>
+                <input type="radio" id="audio" name="option" value="audio"/>
+                <label htmlFor="audio">audio</label>
+
+                <input type="radio" id="music" name="option" value="music"/>
+                <label htmlFor="music">music</label>
+
+                <input type="radio" id="podcast" name="option" value="podcast"/>
+                <label htmlFor="podcast">podcast</label>
+
+                <input type="radio" id="audiobook" name="option" value="audiobook"/>
+                <label htmlFor="audiobook">audiobook</label>
+              </div>
+              <input type="submit" value="Upload" />
+            </form>
+            <button onClick={closeModal}>Fechar modal</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
