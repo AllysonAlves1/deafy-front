@@ -29,7 +29,7 @@ export default function SendMedia() {
         Enviar nova mídia
       </button>
       {showModal && (
-        <div className="flex fixed h-full items-end w-fit">
+        <div className="flex fixed h-full items-end w-fit text-white">
           <div className="flex flex-col bg-slate-800 text-center rounded-lg p-6 w-fit">
             <h1>Preencha os campos</h1>
             <form action="" method="post" className="flex flex-col">
