@@ -18,9 +18,9 @@ const ThemeSwitcher = () => {
   return (
     <div >
       {theme === "light" ? (
-        <SunIcon className="h-10 text-white" onClick={() => setTheme("dark")} />
+        <MoonIcon className="h-10 text-white" onClick={() => setTheme("dark")} />
       ): (
-        <MoonIcon className="h-10" onClick={() => setTheme("light")} />
+        <SunIcon className="h-10" onClick={() => setTheme("light")} />
       )}
     </div>
   );

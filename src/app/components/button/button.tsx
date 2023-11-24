@@ -5,7 +5,7 @@ interface ButtonProps {
 export default function Button( { nome } : ButtonProps ) {
 
   return (
-    <div className="bg-neutral-200 hover:bg-neutral-300 px-3 py-2 rounded-lg w-full text-center font-semibold">
+    <div className="bg-slate-800 hover:bg-slate-600 px-3 py-2 rounded-lg w-full text-center font-semibold text-white">
       <button type="submit">{nome}</button>
     </div>
   );

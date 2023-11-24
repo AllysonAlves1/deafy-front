@@ -11,8 +11,11 @@ export default function uploadPage() {
     <RootLayout layoutProps={layoutProps}>
       <HeaderHome />
       <SendMedia />
-      <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col">
+      <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col flex-wrap">
         <Category category="Meus Uploads" />
+      </div>
+      <div>
+        
       </div>
     </RootLayout>
   );
