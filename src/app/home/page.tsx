@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <RootLayout layoutProps={layoutProps}>
       <HeaderHome></HeaderHome>
-      <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col gap-4">
+      <div className=" bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col gap-4">
         <QuadradosSlider titulo="Musics"/>
         <QuadradosSlider titulo="Podcasts"/>
         <QuadradosSlider titulo="Audiobooks"/>

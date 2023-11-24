@@ -8,7 +8,7 @@ import {
   
   export default function NavBar() {
     return (
-      <div className="fixed bottom-0 flex justify-around bg-slate-800 p-2 w-screen sm:flex md:hidden lg:hidden">
+      <div className="flex bottom-0 flex justify-around bg-slate-800 p-2 w-screen sm:flex md:hidden lg:hidden">
         <Link href="/home">
           <HomeIcon className="w-10 text-white hover:text-zinc-700"/>
         </Link>

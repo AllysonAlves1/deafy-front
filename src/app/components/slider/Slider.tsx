@@ -14,11 +14,43 @@ const QuadradosSlider = ({titulo}: SliderProps) => {
   const settings: Settings = {
     infinite: false,
     speed: 300,
-    slidesToShow: 6,
+    slidesToShow: 7,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 450,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 430,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -26,7 +58,7 @@ const QuadradosSlider = ({titulo}: SliderProps) => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 300,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -37,7 +69,7 @@ const QuadradosSlider = ({titulo}: SliderProps) => {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto flex flex-col">
+    <div className="max-w-screen-lg w-full h-full mx-auto flex flex-col">
       <h2 className="text-3xl font-bold mb-4">{titulo}</h2>
       <Slider {...settings}>
         <div>

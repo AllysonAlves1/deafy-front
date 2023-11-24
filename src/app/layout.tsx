@@ -24,10 +24,10 @@ export default function rootLayout({
       <html lang="pt-br">
         <body className={inter.className}>
           <Providers>
-            <NavBar />
             <SideBar>
             {children}
             </SideBar>
+            <NavBar />
           </Providers>
         </body>
       </html>
