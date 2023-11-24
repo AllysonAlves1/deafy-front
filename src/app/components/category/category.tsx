@@ -13,6 +13,12 @@ export default function Category({ category }: categoryProps) {
         <Audio />
         <Audio />
         <Audio />
+        <Audio />
+        <Audio />
+        <Audio />
+        <Audio />
+        <Audio />
+        <Audio />
       </div>
     </>
   );

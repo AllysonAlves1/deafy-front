@@ -29,21 +29,21 @@ export default function SendMedia() {
         Enviar nova mídia
       </button>
       {showModal && (
-        <div className="flex fixed h-full items-end w-fit text-white">
-          <div className="flex flex-col bg-slate-800 text-center rounded-lg p-6 w-fit">
+        <div className="flex fixed h-full items-end text-white">
+          <div className="flex flex-col bg-slate-800 text-center rounded-lg p-6">
             <h1>Preencha os campos</h1>
             <form action="" method="post" className="flex flex-col">
               <label htmlFor="title">Título</label>
-              <input type="text" name="title" id="title" />
-              <div>
-                Imagem
-              <input type="file" name="image" id="image" />
+              <input type="text" name="title" id="title"/>
+              <div className="flex flex-col">
+                <h6>Imagem</h6>
+              <input type="file" name="image" id="image"/>
               </div>
-              <div>
-                Áudio
+              <div className="flex flex-col">
+                <h6>Áudio</h6>
               <input type="file" name="file" id="file" />
               </div>
-              <div>
+              <div className="flex flex-col">
                 <input type="radio" id="audio" name="option" value="audio"/>
                 <label htmlFor="audio">audio</label>
 

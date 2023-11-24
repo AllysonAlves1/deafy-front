@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/particles-config.js", "src/app/components/modal/modal.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/particles-config.js", "src/app/components/modal/modal.tsx", "src/app/components/slider/Slider.tsx"],
   "exclude": ["node_modules"]
 }
