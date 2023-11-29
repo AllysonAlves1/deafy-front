@@ -67,7 +67,7 @@ export default function SendMedia() {
                 />
                 <label htmlFor="audiobook">audiobook</label>
               </div>
-              <input type="submit" value="Upload" />
+              <input type="submit" value="Upload" className="cursor-pointer bg-black"/>
             </form>
             <button onClick={closeModal}>Fechar modal</button>
           </div>
