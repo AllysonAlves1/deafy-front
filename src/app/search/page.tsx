@@ -7,7 +7,6 @@ export default function SearchPage() {
 
   return (
     <RootLayout layoutProps={layoutProps}>
-      <HeaderHome />
       <div className="h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col">
         <SearchBar />
       </div>

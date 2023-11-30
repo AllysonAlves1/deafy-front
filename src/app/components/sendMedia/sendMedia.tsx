@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function SendMedia() {
   const [showModal, setShowModal] = useState(false);
@@ -21,6 +21,7 @@ export default function SendMedia() {
     }
   }, [showModal]);
 
+
   return (
     <div className="flex flex-col justify-center items-center">
       <button
@@ -31,45 +32,29 @@ export default function SendMedia() {
       </button>
       {showModal && (
         <div className="flex fixed h-full items-end text-white">
-          <div className="flex flex-col bg-slate-800 text-center rounded-lg p-6">
+          <div className="flex flex-col bg-slate-800 text-center rounded-lg p-6 shadow-xl">
             <h1>Preencha os campos</h1>
-            <form action="" method="post" className="flex flex-col">
-              <label htmlFor="title">Título</label>
-              <input type="text" name="title" id="title" />
-              <div className="flex flex-col">
-                <h6>Imagem</h6>
-                <input type="file" name="image" id="image" />
-              </div>
-              <div className="flex flex-col">
-                <h6>Áudio</h6>
-                <input type="file" name="file" id="file" />
-              </div>
-              <div className="flex flex-col">
-                <input type="radio" id="audio" name="option" value="audio" />
-                <label htmlFor="audio">audio</label>
-
-                <input type="radio" id="music" name="option" value="music" />
-                <label htmlFor="music">music</label>
-
+            <form className="flex items-center space-x-6 bg-white p-4">
+              <label className="block">
+                <span className="sr-only">Escolher arquivo</span>
                 <input
-                  type="radio"
-                  id="podcast"
-                  name="option"
-                  value="podcast"
+                  type="file"
+                  className="block w-full text-sm text-slate-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-violet-50 file:text-blue-700
+      hover:file:bg-violet-100
+    "
                 />
-                <label htmlFor="podcast">podcast</label>
-
-                <input
-                  type="radio"
-                  id="audiobook"
-                  name="option"
-                  value="audiobook"
-                />
-                <label htmlFor="audiobook">audiobook</label>
-              </div>
-              <input type="submit" value="Upload" className="cursor-pointer bg-black"/>
+              </label>
             </form>
-            <button onClick={closeModal}>Fechar modal</button>
+            <button
+              onClick={closeModal}
+              className="flex items-center space-x-6 bg-white p-4 w-full text-black justify-center"
+            >
+              Fechar
+            </button>
           </div>
         </div>
       )}

@@ -14,7 +14,7 @@ const QuadradosSlider = ({ titulo }: SliderProps) => {
   const settings: Settings = {
     infinite: false,
     speed: 300,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [
       {
@@ -69,7 +69,7 @@ const QuadradosSlider = ({ titulo }: SliderProps) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col p-6">
+    <div className="flex flex-col p-6">
       <h2 className="text-3xl font-bold mb-4">{titulo}</h2>
       <Slider {...settings}>
         <Audio />
@@ -78,7 +78,8 @@ const QuadradosSlider = ({ titulo }: SliderProps) => {
         <Audio />
         <Audio />
         <Audio />
-
+        <Audio />
+        <Audio />
         {/* Adicione mais quadrados conforme necessário */}
       </Slider>
     </div>
