@@ -1,12 +1,34 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import RootLayout from "../layout";
 import Label from "../components/label/label";
 import deafyicon from "../../../public/deafyicon.png";
 import Button from "../components/button/button";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import http from "@/http";
 
-export default function register() {
+export default function Register() {
   const layoutProps = false;
+
+  // Criar usuário
+
+  const router = useRouter();
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  function handleChange(event: { target: { value: any; name: any } }) {
+    const fieldValue = event.target.value;
+    const fieldName = event.target.name;
+    setValues((values) => ({
+      ...values,
+      [fieldName]: fieldValue,
+    }));
+  }
 
   return (
     <RootLayout layoutProps={layoutProps}>
@@ -19,13 +41,50 @@ export default function register() {
               alt="Deafy Icon"
               className="w-32"
             />
-            <h1 className="text-3xl text-white font-bold">Se inscreva e comece a curtir</h1>
+            <h1 className="text-3xl text-white font-bold">
+              Se inscreva e comece a curtir
+            </h1>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <Label nome="Nome" />
-            <Label nome="E-mail" />
-            <Label nome="Senha" />
-            <Button nome="Register" />
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                http
+                  .post("/users", values)
+                  .then(() => {
+                    router.push("/login");
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    alert("Preencha todos os campos!");
+                  });
+              }}
+            >
+              <div className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nome"
+                  className="bg-neutral-800 rounded-lg p-2 text-white"
+                  onChange={handleChange}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  className="bg-neutral-800 rounded-lg p-2 text-white"
+                  onChange={handleChange}
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Senha"
+                  className="bg-neutral-800 rounded-lg p-2 text-white"
+                  onChange={handleChange}
+                />
+                <Button nome="Criar conta" />
+              </div>
+            </form>
           </div>
           <div className="flex gap-2">
             <p className="text-white">Já tem uma conta?</p>

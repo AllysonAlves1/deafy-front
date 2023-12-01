@@ -1,16 +1,14 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import RootLayout from "../layout";
 import deafyicon from "../../../public/deafyicon.png";
 import Label from "../components/label/label";
 import Button from "../components/button/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { authService } from "@/auth/authService";
+import http from "@/http";
 
-export default function login() {
+export default function Login() {
   const router = useRouter();
   const [values, setValues] = useState({
     email: "",
@@ -45,9 +43,10 @@ export default function login() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              authService
-                .login(values.email, values.password)
-                .then(() => {
+              http.post("/auth/login", values)
+                .then((res) => {
+                  const token = JSON.stringify(res.data.access_token).replace(/^"(.*)"$/, "$1");
+                  localStorage.setItem("token", token);
                   router.push("/home");
                 })
                 .catch((error) => {
