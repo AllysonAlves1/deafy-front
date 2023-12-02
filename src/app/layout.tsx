@@ -6,10 +6,7 @@ import NavBar from "./components/bar/navBar";
 import Providers from "./Providers/providers";
 
 
-
 const inter = Inter({ subsets: ["latin"] });
-
-
 
 export default function rootLayout({
   children,
@@ -24,10 +21,11 @@ export default function rootLayout({
       <html lang="pt-br">
         <body className={inter.className}>
           <Providers>
+            <HeaderHome />
             <SideBar>
             {children}
-            </SideBar>
             <NavBar />
+            </SideBar>
           </Providers>
         </body>
       </html>

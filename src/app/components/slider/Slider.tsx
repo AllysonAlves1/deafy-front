@@ -8,19 +8,20 @@ import Audio from "../media/audio";
 
 interface SliderProps {
   titulo: string;
+  audios: any;
 }
 
-const QuadradosSlider = ({ titulo }: SliderProps) => {
+const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
   const settings: Settings = {
     infinite: false,
     speed: 300,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: false,
         },
@@ -28,7 +29,7 @@ const QuadradosSlider = ({ titulo }: SliderProps) => {
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: false,
         },
@@ -69,16 +70,12 @@ const QuadradosSlider = ({ titulo }: SliderProps) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col p-6">
+    <div className="flex flex-col p-6">
       <h2 className="text-3xl font-bold mb-4">{titulo}</h2>
       <Slider {...settings}>
-        <Audio />
-        <Audio />
-        <Audio />
-        <Audio />
-        <Audio />
-        <Audio />
-
+        {audios.map((audio: any) => (
+          <Audio key={audio.id} title={audio.title} author={audio.author.name}/>
+        ))}
         {/* Adicione mais quadrados conforme necessário */}
       </Slider>
     </div>
