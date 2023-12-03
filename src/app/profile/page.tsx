@@ -9,21 +9,14 @@ export default function ProfilePage() {
 
   return (
     <RootLayout layoutProps={layoutProps}>
-      <div className="flex flex-col items-center min-h-screen bg-neutral-200 dark:bg-neutral-900 ">
-        <div className="flex items-center my-10 gap-2">
-          <Image
-            className="rounded-full w-36"
+      <div className="flex flex-col items-center bg-neutral-200 dark:bg-neutral-900 min-h-screen">
+        <div className="flex flex-col gap-4 items-center absolute top-40 w-[50%] xl:w-[30%]">
+        <Image
+            className="rounded-full w-36 mb-2"
             src={notamusica}
             alt="generico"
           />
-          <Button nome="Alterar" />
-        </div>
-        <div className="flex flex-col gap-2 items-center ">
-          <h1 className="text-1xl">Nome Atual:</h1>
           <Label nome="Nome" />
-          <Button nome="Alterar" />
-          <Label nome="Senha Antiga" />
-          <Label nome="Senha Nova" />
           <Button nome="Alterar" />
         </div>
       </div>
