@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="flex justify-around bg-slate-800 p-2 md:hidden max-w-full">
+    <div className="flex justify-around bg-slate-800 p-3 md:hidden min-w-full fixed bottom-0">
       <Link href="/home">
         <HomeIcon className="w-10 text-white hover:text-zinc-700" />
       </Link>

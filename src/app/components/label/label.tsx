@@ -4,17 +4,19 @@ interface LabelProps {
 
 export default function Label({ nome }: LabelProps) {
   return (
-      <form action="" className="flex flex-col gap-4 w-full">
-        <label className="">
-          <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-bold dark:text-white">
-            {nome}
-          </span>
-        </label>
-        <input
-          type="text"
-          className="text-black pl-3 py-1 border-neutral-700 hover:border-neutral-700 active:border-neutral-700 font-light"
-        />
-      </form>
-
+    <form action="" className="flex flex-col w-full">
+      <input
+        type="text"
+        placeholder="Nome"
+        className="border-2
+          border-gray-300
+          dark:bg-white
+          p-3
+          rounded-lg
+          focus:outline-none
+          focus:border-neutral-700
+          dark:text-black"
+      />
+    </form>
   );
 }
