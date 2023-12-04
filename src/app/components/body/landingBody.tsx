@@ -19,26 +19,7 @@ export default function LandingBody(){
     return(
         <div>
             <div className="flex justify-between px-4 py-2 items-center bg-slate-800 h-16">
-                <Image
-                        src={deafyicon}
-                        style={{ cursor: "pointer" }}
-                        alt="Deafy Icon"
-                        className=" w-20"
-                    />
-                <Image
-                    src={menubars}
-                    style={{ cursor: "pointer" }}
-                    alt="Menu bars"
-                    className={`${isOpen? "hidden" : "w-10"} mr-2`}
-                    onClick={alteraEstado}
-                />
-                <Image
-                    src={closebutton}
-                    style={{ cursor: "pointer" }}
-                    alt="Close button"
-                    className={`${isOpen? "w-8" : "hidden"} mr-3`}
-                    onClick={alteraEstado}
-                />
+                
             </div>
             <div className={`${isOpen? "w-screen overflow-hidden" : "hidden"} h-screen bg-slate-800`}>
                 <div className="flex flex-col gap-8 text-neutral-200 text-3xl font-bold p-8">
