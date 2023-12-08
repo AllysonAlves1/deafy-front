@@ -6,6 +6,7 @@ import NavBar from "./components/bar/navBar";
 import Providers from "./Providers/providers";
 import HeaderHome from "./components/header/header";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function rootLayout({
