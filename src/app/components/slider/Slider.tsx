@@ -29,7 +29,7 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 1,
           infinite: false,
         },
@@ -45,7 +45,7 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
       {
         breakpoint: 450,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: false,
         },

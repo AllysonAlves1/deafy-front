@@ -23,9 +23,9 @@ export default function UploadPage() {
 
   return (
     <RootLayout layoutProps={layoutProps}>
+      <div className="min-h-screen bg-neutral-200 dark:bg-neutral-900 p-4 mt-20">
       <SendMedia />
-      <div className="min-h-screen bg-neutral-200 dark:bg-neutral-900 p-4">
-        <div className="grid grid-cols-3 gap-2 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
           {audios.map((audio) => (
             <Audio
               key={audio.id}
