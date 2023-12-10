@@ -1,0 +1,21 @@
+{
+    "audios": [{
+            "id": 1,
+            "title": "Titulo",
+            "audio": "audio",
+            "author": {
+                "id": 1,
+                "name": "teste"
+            }
+        },
+        {
+            "id": 2,
+            "title": "Titulo2",
+            "audio": "audio2",
+            "author": {
+                "id": 2,
+                "name": "teste2"
+            }
+        }
+    ]
+}
