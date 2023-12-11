@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link";
-import loginIcon from "../../../../public/loginIcon.png"
 import Button from "../button/button";
 
 interface ImageProps {

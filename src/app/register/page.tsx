@@ -33,7 +33,7 @@ export default function Register() {
   return (
     <RootLayout layoutProps={layoutProps}>
       <div className="flex flex-col items-center justify-center h-screen bg-neutral-700">
-        <div className="bg-neutral-900 rounded-3xl w-[80%] md:w-[50%] lg:w-[40%] h-[80%] p-10 flex flex-col gap-5">
+        <div className="bg-neutral-900 rounded-3xl w-[90%] md:w-[50%] lg:w-[40%] p-10 flex flex-col gap-5">
           <div className="flex flex-col justify-center items-center">
             <Image
               src={deafyicon}
@@ -41,7 +41,7 @@ export default function Register() {
               alt="Deafy Icon"
               className="w-32"
             />
-            <h1 className="text-3xl text-white font-bold">
+            <h1 className="text-2xl text-white font-bold text-center">
               Se inscreva e comece a curtir
             </h1>
           </div>
@@ -86,7 +86,7 @@ export default function Register() {
               </div>
             </form>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 justify-center">
             <p className="text-white">Já tem uma conta?</p>
             <Link href="/login">
               <p className="text-white font-semibold hover:underline hover:text-neutral-200">

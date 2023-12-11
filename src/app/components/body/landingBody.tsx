@@ -3,8 +3,6 @@ import Link from "next/link";
 import {useState} from "react"
 import Image from "next/image"
 import deafyicon from "../../../../public/deafyicon.png"
-import menubars from "../../../../public/menubars.png"
-import closebutton from "../../../../public/closebutton.jpg"
 import facebook from "../../../../public/SocialImgs/icons8-facebook.svg"
 import uploadicon from "../../../../public/upload.png"
 

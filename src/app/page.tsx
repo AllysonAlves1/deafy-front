@@ -8,6 +8,7 @@ import upload from "../../public/upload.png"
 import music from "../../public/musicicon.png"
 import Button from "./components/button/button";
 import Link from "next/link";
+import LandingFooter from "./components/footer/landingFooter";
 
 export default function home() {
 
@@ -18,7 +19,7 @@ export default function home() {
     <RootLayout layoutProps={layoutProps}>
         <LandingHeader image = {deafyicon}/>
         <LandingBanner/>
-        <div className="py-6 flex flex-col items-center gap-10">
+        <div className="pt-6 flex flex-col items-center gap-10 mb-0 border-b-2 border-slate-900">
           <h2 className="text-black text-2xl font-bold">Porque utilizar o Deafy?</h2>
           <div className="flex flex-col gap-10">
             <LandingCard imagem={texticon} titulo="Transcreva seus áudios." texto="Inclusão para compreensão de áudios na palma da sua mão."/>
@@ -37,7 +38,9 @@ export default function home() {
               </Link>
             </div>
           </div>
+          
         </div>
+        <LandingFooter></LandingFooter>
     </RootLayout>
   );
 }
