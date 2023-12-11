@@ -12,25 +12,29 @@ export default function UploadPage() {
   useEffect(() => {
     http
       .get("/audios", {
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}`},
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         console.log(res.data);
         setAudios(res.data);
-      }).catch((error) => {
-        console.log(error)});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
     <RootLayout layoutProps={layoutProps}>
       <div className="min-h-screen bg-neutral-200 dark:bg-neutral-900 p-4 mt-20">
-      <SendMedia />
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
+        <SendMedia />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {audios.map((audio) => (
             <Audio
               key={audio.id}
               title={audio.title}
               author={audio.author.name}
+              image={audio.image}
+              id={audio.id}
             />
           ))}
         </div>

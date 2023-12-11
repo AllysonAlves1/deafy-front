@@ -1,21 +1,23 @@
+'use client'
 import Image from "next/image";
-const Play = () => {
+import { AudioProps } from "../media/audio";
+
+export default function Play({ title, author, audio, image }: AudioProps) {
   return (
     <div className="p-4 flex flex-col gap-4">
       <div className="mx-auto">
-        <Image src="/notamusica.png" alt="" width={300} height={300} />
+        <Image src={image} alt="" width={300} height={300} />
       </div>
       <div className="flex flex-col">
-        <p className="text-sm">I Wonder</p>
-        <p className="text-sm">Kayne West</p>
+        <p className="text-sm">{title}</p>
+        <p className="text-sm">{author}</p>
       </div>
       <div className="flex justify-around">
+        <span className="sr-only">{audio}</span>
         <audio controls className="w-full">
-          <source src="./audios/IWonder.mp3" type="audio/mpeg"/>
+          <source src={audio} type="audio/wav" />
         </audio>
       </div>
     </div>
   );
-};
-
-export default Play;
+}

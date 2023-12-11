@@ -74,7 +74,13 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
       <h2 className="text-3xl font-bold mb-4">{titulo}</h2>
       <Slider {...settings}>
         {audios.map((audio: any) => (
-          <Audio key={audio.id} title={audio.title} author={audio.author.name}/>
+          <Audio
+            key={audio.id}
+            title={audio.title}
+            author={audio.author.name}
+            image={audio.image}
+            id={audio.id}
+          />
         ))}
         {/* Adicione mais quadrados conforme necessário */}
       </Slider>
