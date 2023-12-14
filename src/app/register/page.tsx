@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import RootLayout from "../layout";
-import Label from "../components/label/label";
+import Label from "../components/textInput/TextInput";
 import deafyicon from "../../../public/deafyicon.png";
 import Button from "../components/button/button";
 import { useRouter } from "next/navigation";

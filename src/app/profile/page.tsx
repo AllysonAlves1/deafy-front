@@ -1,7 +1,7 @@
 import RootLayout from "../layout";
 import notamusica from "../../../public/notamusica.png";
 import Image from "next/image";
-import Label from "../components/label/label";
+import Label from "../components/textInput/TextInput";
 import Button from "../components/button/button";
 
 export default function ProfilePage() {

@@ -1,25 +1,26 @@
-"use client"
+"use client";
 import RootLayout from "../../layout";
 import Subtitle from "../../components/play/subtitle";
 import { useEffect, useState } from "react";
 import http from "@/http";
 import dynamic from "next/dynamic";
+import { AudioProps } from "@/app/components/media/audio";
+
+const AudioPlayer = dynamic(() => import("../../components/play/play"), {
+  ssr: false,
+});
 
 export default function PlayerPage({ params }: { params: { id: string } }) {
   const layoutProps = true;
 
-  const AudioPlayer = dynamic(() => import('../../components/play/play'), {
-    ssr: false,
-  });
-
-  const [audio, setAudio] = useState({
+  const [audio, setAudio] = useState<AudioProps>({
     id: "",
     title: "",
     audio: "",
     image: "",
     author: {
       name: "",
-    }
+    },
   });
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
         <AudioPlayer
           audio={audio.audio}
           title={audio.title}
-          author={audio.author.name}
+          author={{ name: audio.author.name }}
           image={audio.image}
           id={audio.id}
         />

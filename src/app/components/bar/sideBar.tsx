@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function SideBar({ children }: any) {
   return (
     <div className="flex">
-      <div className="min-h-screen hidden md:flex bg-slate-800 md:w-[240px] p-4 fixed top-14 z-0">
+      <div className="h-full hidden md:flex bg-slate-800 md:w-[240px] p-4 fixed top-14 z-0">
         <div className="flex flex-col gap-10 py-6">
           <Link href="/home">
             <div className="flex items-center gap-2">
