@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from "react";
-import HeaderHome from "../components/header/header";
 import SearchBar from "../components/searchbar/searchBar";
 import RootLayout from "../layout";
 import http from "@/http";
