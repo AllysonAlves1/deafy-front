@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
 import { useEffect, useState } from 'react';
@@ -18,7 +17,7 @@ export default function SearchBar() {
         // Filtro dos áudios com base no termo de pesquisa
         const filteredAudios = res.data.filter((audio: AudioProps) => {
           const titleMatch = audio.title.toLowerCase().includes(searchTerm.toLowerCase());
-          const authorMatch = audio.author.name.toLowerCase().includes(searchTerm.toLowerCase());
+          const authorMatch = audio.author?.name.toLowerCase().includes(searchTerm.toLowerCase());
           return titleMatch || authorMatch;
         });
         setAudios(filteredAudios);
@@ -40,7 +39,7 @@ export default function SearchBar() {
         />
       </label>
 
-      <div className='grid grid-cols-3 gap-2 lg:grid-cols-4 xl:grid-cols-5 p-4'>
+      <div className='grid grid-cols-2 min-[600px]:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
           {audios.map((audio) => (
             <Audio key={audio.id} {...audio} />
           ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Form from "../form/Form";
+import FormMedia from "../form/FormMedia";
 
 export default function SendMedia() {
   const [role, setRole] = useState('');
@@ -50,7 +50,7 @@ export default function SendMedia() {
             <h1 className="text-xl font-bold pb-4 border-gray-200 text-black dark:text-white">
               Preencha os campos abaixo
             </h1>
-            <Form user={role} />
+            <FormMedia user={role} />
             <button
               onClick={closeModal}
               className="bg-white dark:bg-neutral-800 dark:text-white border-transparent border-2 border-solid hover:border-black dark:hover:border-white px-3 py-2 rounded-lg w-full text-center font-semibold text-black my-2"

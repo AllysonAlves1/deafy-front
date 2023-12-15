@@ -44,7 +44,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
         <AudioPlayer
           audio={audio.audio}
           title={audio.title}
-          author={{ name: audio.author.name }}
+          author={{ name: audio.author?.name ?? "" }}
           image={audio.image}
           id={audio.id}
         />

@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import { AudioProps } from "../media/audio";
+import { formatAuthorName } from "@/app/utils/formatAuthor";
 
 export default function Play({ title, author, audio, image }: AudioProps) {
   return (
@@ -10,7 +11,7 @@ export default function Play({ title, author, audio, image }: AudioProps) {
       </div>
       <div className="flex flex-col">
         <p className="text-sm">{title}</p>
-        <p className="text-sm">{author.name}</p>
+        <p className="text-sm">{formatAuthorName(author?.name ?? '')}</p>
       </div>
       <div className="flex justify-around">
         <span className="sr-only">{audio}</span>

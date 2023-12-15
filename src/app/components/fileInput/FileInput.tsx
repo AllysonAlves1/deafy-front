@@ -2,7 +2,7 @@ import { ChangeEventHandler } from "react";
 
 export default function FileInput({ name, label, onChange }: { name: string, label: string, onChange: ChangeEventHandler<HTMLInputElement> }) {
     return (
-        <label className="flex items-center justify-between border-2 rounded-lg p-2 w-full">
+        <label className="flex items-center justify-between rounded-lg p-2 w-full">
           <span className="text-black font-semibold mx-2">{label}</span>
           <input
             type="file"

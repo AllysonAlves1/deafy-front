@@ -1,64 +1,121 @@
-import { createContext, useEffect, useState } from "react";
-import { setCookie, parseCookies } from 'nookies'
-import Router from 'next/router'
-
-import { recoverUserInformation, signInRequest } from "../services/auth";
+"use client";
 import http from "@/http";
+import { createContext, useContext, useEffect, useState } from "react";
+import { ReactNode } from "react";
 
 type User = {
+  id: number;
   name: string;
-  email: string;
-  avatar_url: string;
-}
+  role: string;
+  image?: string;
+};
 
-type SignInData = {
+type loginForm = {
   email: string;
   password: string;
+};
+
+type TokenPayload = {
+  sub: number;
+  name: string;
+  role: string;
+  image?: string;
+};
+
+interface AuthContextType {
+  user: User | null;
+  login: (values: any) => Promise<{ success: boolean; error?: string }>;
+  logout: () => void;
 }
 
-type AuthContextType = {
-  isAuthenticated: boolean;
-  user: User;
-  signIn: (data: SignInData) => Promise<void>
+function getPayloadFromToken(token: string): TokenPayload | null | undefined {
+  try {
+    const [, payloadBase64] = token.split(".");
+    const payload = JSON.parse(atob(payloadBase64)) as TokenPayload;
+    return payload;
+  }
+  catch(error) {
+    console.error("Erro ao decodificar o token: ", error)
+    return null;
+  }
 }
 
-export const AuthContext = createContext({} as AuthContextType)
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState<User | null>(null)
-
-  const isAuthenticated = !!user;
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { 'nextauth.token': token } = parseCookies()
-
+    const token = localStorage.getItem("token");
     if (token) {
-      recoverUserInformation().then(response => {
-        setUser(response.user)
-      })
+      const payload = getPayloadFromToken(token);
+      if (payload) {
+        const { sub: id, name, role, image } = payload;
+        setUser({ id, name, role, image });
+      } else {
+        console.error(
+          "Token inválido ou não contém informações necessárias."
+        );
+      }
     }
-  }, [])
+    setLoading(false);
+  }, []);
 
-  async function signIn({ email, password }: SignInData) {
-    const { token, user } = await signInRequest({
-      email,
-      password,
-    })
+  const login = async (
+    values: loginForm
+  ): Promise<{ success: boolean; error?: string }> => {
+    try {
+      const response = await http.post("/auth/login", values);
+      const accessToken = JSON.stringify(response.data.access_token).replace(
+        /^"(.*)"$/,
+        "$1"
+      );
+      localStorage.setItem("token", accessToken);
+      if (accessToken) {
+        const payload = getPayloadFromToken(accessToken);
+        if (payload && payload.sub && payload.name && payload.role && payload.image) {
+          const { sub: id, name, role, image } = payload;
+          setUser({ id, name, role, image });
+          return { success: true };
+        } else {
+          console.error(
+            "Token inválido ou não contém informações necessárias."
+          );
+          return { success: false, error: "Token inválido" };
+        }
+      } else {
+        console.error("Token não encontrado na resposta do servidor.");
+        return { success: false, error: "Token não encontrado" };
+      }
+    } catch (error: any) {
+      console.error("Erro ao fazer login:", error);
 
-    setCookie(undefined, 'nextauth.token', token, {
-      maxAge: 60 * 60 * 1, // 1 hour
-    })
+      if (error.response && error.response.status === 401) {
+        return { success: false, error: "Usuário ou senha inválidos" };
+      } else {
+        return { success: false, error: "Erro ao processar a solicitação" };
+      }
+    }
+  };
 
-    http.defaults.headers['Authorization'] = `Bearer ${token}`;
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+  };
 
-    setUser(user)
-
-    Router.push('/dashboard');
-  }
+  if(loading) return (<div>Carregando...</div>)
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context)
+    throw new Error("useAuth deve ser usado dentro de um AuthProvider");
+  return context;
+};

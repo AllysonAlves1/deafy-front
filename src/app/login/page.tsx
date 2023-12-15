@@ -5,23 +5,35 @@ import deafyicon from "../../../public/deafyicon.png";
 import Button from "../components/button/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import http from "@/http";
+import { useAuth } from "../Providers/AuthContext";
 
 export default function Login() {
+  const { login } = useAuth();
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
-  function handleChange(event: { target: { value: any; name: any } }) {
-    const fieldValue = event.target.value;
-    const fieldName = event.target.name;
-    setValues((values) => ({
-      ...values,
-      [fieldName]: fieldValue,
-    }));
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value, name } = event.currentTarget;
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
   }
+
+  const handleLogin = async () => {
+    try {
+      const result = await login(values);
+      if (result.success) {
+        router.push("/home");
+      } else {
+        setError(result.error || null);
+      }
+    } catch (error) {
+      console.error("Erro ao fazer login: ", error);
+      setError("Erro ao processar a solicitação. Tente novamente mais tarde.");
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-neutral-700">
@@ -36,22 +48,10 @@ export default function Login() {
           <h1 className="text-3xl text-white font-bold">Entrar na Deafy</h1>
         </div>
         <div className="flex flex-col items-center gap-4">
-          {/* <Label nome="E-mail" />
-            <Label nome="Senha" />
-            <Button nome="Login" /> */}
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              http.post("/auth/login", values)
-                .then((res) => {
-                  const token = JSON.stringify(res.data.access_token).replace(/^"(.*)"$/, "$1");
-                  localStorage.setItem("token", token);
-                  router.push("/home");
-                })
-                .catch((error) => {
-                  console.log(error);
-                  alert("Usuário ou senha inválidos");
-                });
+              handleLogin();
             }}
           >
             <div className="flex flex-col gap-2">
@@ -72,12 +72,7 @@ export default function Login() {
               <Button nome="Login" />
             </div>
           </form>
-
-          <Link href="">
-            <p className="text-neutral-200 hover:underline hover:text-neutral-300">
-              Esqueceu sua senha?
-            </p>
-          </Link>
+          {error && <p className="text-red-500">{error}</p>}
         </div>
         <div className="flex gap-2 justify-center">
           <p className="text-white">Não tem uma conta?</p>

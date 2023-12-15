@@ -5,7 +5,7 @@ import { formatAuthorName } from "@/app/utils/formatAuthor";
 
 export interface AudioProps {
   title: string;
-  author: {
+  author?: {
     name: string;
   };
   image: string;
@@ -31,7 +31,7 @@ export default function Audio({ title, author, image, id }: AudioProps) {
             {title}
           </p>
           <p className="lg:text-lg whitespace-nowrap text-ellipsis max-w-[30ch] overflow-hidden">
-            {formatAuthorName(author.name)}
+            {formatAuthorName(author?.name || "")}
           </p>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import http from "@/http";
 
-export default function Form({ user }: { user: string }) {
+export default function FormMedia({ user }: { user: string }) {
   const [values, setValues] = useState({
     title: "",
     category: "",

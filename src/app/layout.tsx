@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideBar from "./components/bar/sideBar";
 import NavBar from "./components/bar/navBar";
 import Providers from "./Providers/providers";
 import HeaderHome from "./components/header/header";
-
+import { AuthProvider } from "./Providers/AuthContext";
+import ProtectedRoute from "./Providers/ProtectedRoute";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,13 +21,17 @@ export default function rootLayout({
     return (
       <html lang="pt-br">
         <body className={inter.className}>
-          <Providers>
-            <HeaderHome />
-            <SideBar>
-            {children}
-            <NavBar />
-            </SideBar>
-          </Providers>
+          <AuthProvider>
+            <ProtectedRoute>
+              <Providers>
+                <HeaderHome />
+                <SideBar>
+                  {children}
+                  <NavBar />
+                </SideBar>
+              </Providers>
+            </ProtectedRoute>
+          </AuthProvider>
         </body>
       </html>
     );
@@ -35,7 +39,9 @@ export default function rootLayout({
   } else {
     return (
       <html>
-        <body>{children}</body>
+        <body>
+          <AuthProvider>{children}</AuthProvider>
+        </body>
       </html>
     );
   }

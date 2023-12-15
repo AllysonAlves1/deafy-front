@@ -1,5 +1,6 @@
 interface ButtonProps {
   nome: string;
+  onClick?: () => void;
 }
 
 export default function Button( { nome } : ButtonProps ) {
