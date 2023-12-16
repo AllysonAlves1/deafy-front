@@ -82,7 +82,7 @@ export default function Register() {
                   className="bg-neutral-800 rounded-lg p-2 text-white"
                   onChange={handleChange}
                 />
-                <Button nome="Criar conta" />
+                <Button nome="Criar conta" type="submit" />
               </div>
             </form>
           </div>

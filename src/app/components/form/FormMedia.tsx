@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FileInput from "../fileInput/FileInput";
 import SelectInput from "../select/Select";
 import TextInput from "../textInput/TextInput";
@@ -6,8 +6,9 @@ import Button from "../button/button";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import http from "@/http";
+import { useRouter } from "next/navigation";
 
-export default function FormMedia({ user }: { user: string }) {
+export default function FormMedia({ user }: { user: string | undefined }) {
   const [values, setValues] = useState({
     title: "",
     category: "",
@@ -16,6 +17,13 @@ export default function FormMedia({ user }: { user: string }) {
     audio: "",
     image: "",
   });
+
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    load();
+  }, [loading]);
 
   function handleChange(event: { target: { value: any; name: any } }) {
     const fieldValue = event.target.value;
@@ -36,13 +44,10 @@ export default function FormMedia({ user }: { user: string }) {
   }
 
   // FFmpeg
-  const [loaded, setLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const ffmpegRef = useRef(new FFmpeg());
   const messageRef = useRef<HTMLParagraphElement | null>(null);
 
   const load = async () => {
-    setIsLoading(true);
     const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.4/dist/umd";
     const ffmpeg = ffmpegRef.current;
     ffmpeg.on("log", ({ message }) => {
@@ -55,34 +60,61 @@ export default function FormMedia({ user }: { user: string }) {
         "application/wasm"
       ),
     });
-    setLoaded(true);
-    setIsLoading(false);
   };
 
   const transcode = async (e: {
     target: { files: (string | File | Blob | undefined)[] };
   }) => {
     const ffmpeg = ffmpegRef.current;
-    await ffmpeg.writeFile("audio.mp3", await fetchFile(e.target.files[0]));
+    const inputFile = e.target.files[0] as File;
+    await ffmpeg.writeFile("audio.mp3", await fetchFile(inputFile));
     await ffmpeg.exec(["-i", "audio.mp3", "output.wav"]);
     const wavData = (await ffmpeg.readFile("output.wav")) as any;
-    return wavData;
+    let fileName = inputFile.name;
+    fileName = fileName.replace(/\.mp3$/, ".wav");
+    const blobOptions = { type: "audio/wav" };
+    const blob = new Blob([wavData.buffer], blobOptions);
+    const audioFile = new File([blob], fileName, { type: "audio/wav" });
+    return audioFile;
   };
 
-  const uploadAudio = async (e: any) => {
-    const wavData = await transcode(e);
-    const title = await e.target.value;
+  const uploadPost = async () => {
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("audio", wavData);
+    formData.append("title", values.title);
+    formData.append("category", values.category);
+    formData.append("audio", files.audio);
+    formData.append("image", files.image);
     http
-      .post("/upload", formData, {
+      .post("audios/posts/upload", formData, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        router.push('/home');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const uploadAudio = async () => {
+    const formData = new FormData();
+    formData.append("title", values.title);
+    const wavData = await transcode({ target: { files: [files.audio] } });
+    formData.append("audio", wavData);
+    // const subtitle = Fetch com a IA
+    // formData.append("subtitle", subtitle);
+    http
+      .post("/audios/upload", formData, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
+        setLoading(true);
         console.log(res.data);
       })
       .catch((error) => {
@@ -95,7 +127,8 @@ export default function FormMedia({ user }: { user: string }) {
       className="flex flex-col gap-4 w-full max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden p-4 mb-2"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(values, files);
+        if(user === "ADMIN") uploadPost();
+        else uploadAudio();
       }}
     >
       {user === "ADMIN" ? (
@@ -112,7 +145,7 @@ export default function FormMedia({ user }: { user: string }) {
         </>
       )}
 
-      <Button nome="Enviar" />
+      <Button nome="Enviar" type="submit" />
     </form>
   );
 }

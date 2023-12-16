@@ -5,6 +5,7 @@ import { formatAuthorName } from "@/app/utils/formatAuthor";
 
 export interface AudioProps {
   title: string;
+  subtitle?: string;
   author?: {
     name: string;
   };

@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     // Verifica se o usuário está autenticado
     if (!user) {
       // Se não estiver autenticado e o carregamento foi concluído, redireciona para a tela de início
-      router.push('/login');
+      router.push('/');
     }
   }, [user, router]);
 

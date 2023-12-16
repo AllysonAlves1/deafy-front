@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-neutral-700">
-      <div className="bg-neutral-900 rounded-3xl w-[90%] md:w-[50%] lg:w-[40%]  p-10 flex flex-col gap-5">
+      <div className="bg-neutral-900 rounded-3xl w-[90%] min-[500px]:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[30%] p-10 flex flex-col gap-5">
         <div className="flex flex-col justify-center items-center">
           <Image
             src={deafyicon}
@@ -49,28 +49,27 @@ export default function Login() {
         </div>
         <div className="flex flex-col items-center gap-4">
           <form
+            className="flex flex-col gap-2 w-[80%]"
             onSubmit={(event) => {
               event.preventDefault();
               handleLogin();
             }}
           >
-            <div className="flex flex-col gap-2">
-              <input
-                type="email"
-                name="email"
-                placeholder="E-mail"
-                className="rounded-lg p-2 bg-neutral-800 text-neutral-200"
-                onChange={handleChange}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Senha"
-                className="rounded-lg p-2 bg-neutral-800 text-neutral-200"
-                onChange={handleChange}
-              />
-              <Button nome="Login" />
-            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              className="rounded-lg p-2 bg-neutral-800 text-neutral-200 w-full"
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Senha"
+              className="rounded-lg p-2 bg-neutral-800 text-neutral-200 w-full"
+              onChange={handleChange}
+            />
+            <Button nome="Login" type="submit"/>
           </form>
           {error && <p className="text-red-500">{error}</p>}
         </div>

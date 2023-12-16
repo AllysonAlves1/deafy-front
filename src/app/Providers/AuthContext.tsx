@@ -7,7 +7,7 @@ type User = {
   id: number;
   name: string;
   role: string;
-  image?: string;
+  image?: string | null;
 };
 
 type loginForm = {
@@ -19,7 +19,7 @@ type TokenPayload = {
   sub: number;
   name: string;
   role: string;
-  image?: string;
+  image?: string | null;
 };
 
 interface AuthContextType {
@@ -33,9 +33,8 @@ function getPayloadFromToken(token: string): TokenPayload | null | undefined {
     const [, payloadBase64] = token.split(".");
     const payload = JSON.parse(atob(payloadBase64)) as TokenPayload;
     return payload;
-  }
-  catch(error) {
-    console.error("Erro ao decodificar o token: ", error)
+  } catch (error) {
+    console.error("Erro ao decodificar o token: ", error);
     return null;
   }
 }
@@ -54,9 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const { sub: id, name, role, image } = payload;
         setUser({ id, name, role, image });
       } else {
-        console.error(
-          "Token inválido ou não contém informações necessárias."
-        );
+        console.error("Token inválido ou não contém informações necessárias.");
       }
     }
     setLoading(false);
@@ -74,7 +71,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem("token", accessToken);
       if (accessToken) {
         const payload = getPayloadFromToken(accessToken);
-        if (payload && payload.sub && payload.name && payload.role && payload.image) {
+        if (
+          payload &&
+          payload.sub &&
+          payload.name &&
+          payload.role
+        ) {
           const { sub: id, name, role, image } = payload;
           setUser({ id, name, role, image });
           return { success: true };
@@ -104,7 +106,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("token");
   };
 
-  if(loading) return (<div>Carregando...</div>)
+  if (loading) return <div>Carregando...</div>;
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

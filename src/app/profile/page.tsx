@@ -84,7 +84,7 @@ export default function ProfilePage() {
             />
             <FileInput name="image" label="" onChange={handleFileChange} />
             <TextInput name="name" label="Nome" onChange={handleChange} />
-            <Button nome="Alterar" />
+            <Button nome="Alterar" type="submit"/>
           </form>
           {message && <><p className="text-center text-green-500 w-[30ch]">{message.sucess}</p>
           <p className="text-center text-green-500 w-[30ch]">{message.update}</p>

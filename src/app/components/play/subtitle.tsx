@@ -1,8 +1,82 @@
-export default function Subtitle() {
+import React, { useState } from "react";
+import Button from "../button/button";
+import http from "@/http";
+
+export default function Subtitle({
+  subtitle,
+  id,
+}: {
+  subtitle: string;
+  id: string;
+}) {
+  const [subtitleForm, setSubtitle] = useState<string>("");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const formattedSubtitle = subtitle.split("\n").map((line, index) => (
+    <React.Fragment key={index}>
+      {line}
+      <br />
+    </React.Fragment>
+  ));
+
+  function handleText(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    const { value } = event.currentTarget;
+    setSubtitle(value);
+  }
+
+  function handleEditClick() {
+    setIsEditing(true);
+  }
+
+  function handleSaveClick() {
+    http.patch(
+      `/audios/${id}`,
+      {
+        subtitle: subtitleForm,
+      },
+      {
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      }
+    );
+    setIsEditing(false);
+  }
+
   return (
-    <div className="p-4 m-4 flex flex-col gap-2 bg-gray-500">
-      <h1 className="text-lg">Legenda</h1>
-      <p>LEGENDAS DO AUDIO E MUSICA INTERPRETADOS POR IA</p>
+    <div className="p-4 m-4 flex flex-col gap-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg">
+      <div className="flex justify-between items-center">
+        <h1 className="text-lg">Legenda</h1>
+        {!isEditing && (
+          <button
+            className="rounded-lg p-2 hover:text-neutral-600 dark:hover:text-neutral-300 transition-all"
+            onClick={handleEditClick}
+          >
+            Editar
+          </button>
+        )}
+      </div>
+      {isEditing && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSaveClick();
+          }}
+          className="flex flex-col gap-4"
+        >
+          <textarea
+            className="h-40 dark:bg-neutral-800 rounded-lg p-2 break-words w-full"
+            placeholder="Digite a legenda aqui"
+            value={subtitleForm}
+            onChange={handleText}
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-neutral-400 dark:bg-neutral-800 border-transparent border-[1px] hover:border-black dark:hover:border-white p-2 rounded-md"
+          >
+            Salvar
+          </button>
+        </form>
+      )}
+      {!isEditing && <p className="text-sm">{formattedSubtitle}</p>}
     </div>
   );
 }

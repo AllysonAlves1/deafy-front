@@ -16,6 +16,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
   const [audio, setAudio] = useState<AudioProps>({
     id: "",
     title: "",
+    subtitle: "",
     audio: "",
     image: "",
     author: {
@@ -48,7 +49,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
           image={audio.image}
           id={audio.id}
         />
-        <Subtitle />
+        <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id}/>
       </div>
     </RootLayout>
   );
