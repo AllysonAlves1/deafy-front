@@ -58,7 +58,9 @@ export default function Subtitle({
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            window.alert("Legenda salva com sucesso!");
             handleSaveClick();
+            window.location.reload();
           }}
           className="flex flex-col gap-4"
         >

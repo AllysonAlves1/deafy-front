@@ -1,11 +1,14 @@
-"use client";
-import RootLayout from "../../layout";
-import Subtitle from "../../components/play/subtitle";
+"use client"
+
+// Importações dos módulos
 import { useEffect, useState } from "react";
 import http from "@/http";
 import dynamic from "next/dynamic";
+import RootLayout from "../../layout";
+import Subtitle from "../../components/play/subtitle";
 import { AudioProps } from "@/app/components/media/audio";
 
+// Importação dinâmica do componente AudioPlayer
 const AudioPlayer = dynamic(() => import("../../components/play/play"), {
   ssr: false,
 });
@@ -39,17 +42,25 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
       });
   }, []);
 
+  // Verifica se todos os campos de áudio necessários estão preenchidos
+  const isAudioReady = audio.id !== "" && audio.audio !== "" && audio.title !== "";
+
   return (
     <RootLayout layoutProps={layoutProps}>
       <div>
-        <AudioPlayer
-          audio={audio.audio}
-          title={audio.title}
-          author={{ name: audio.author?.name ?? "" }}
-          image={audio.image}
-          id={audio.id}
-        />
-        <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id}/>
+        {/* Renderiza o reprodutor de áudio e o subtítulo apenas quando o áudio estiver pronto */}
+        {isAudioReady && (
+          <>
+            <AudioPlayer
+              audio={audio.audio}
+              title={audio.title}
+              author={{ name: audio.author?.name ?? "" }}
+              image={audio.image}
+              id={audio.id}
+            />
+            <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id} />
+          </>
+        )}
       </div>
     </RootLayout>
   );
