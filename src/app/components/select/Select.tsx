@@ -11,7 +11,7 @@ export default function SelectInput({
       onChange={onChange}
       name="category"
     >
-      <option value="AUDIO">Audio</option>
+      <option value="AUDIO">Audio - Limite de 60s por áudio</option>
       <option value="MUSIC">Música</option>
       <option value="PODCAST">Podcast</option>
       <option value="AUDIOBOOK">Audiobook</option>

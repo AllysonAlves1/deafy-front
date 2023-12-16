@@ -7,6 +7,7 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import http from "@/http";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function FormMedia({ user }: { user: string | undefined }) {
   const [values, setValues] = useState({
@@ -92,6 +93,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
         },
       })
       .then(() => {
+        window.alert("Post enviado com sucesso!");
         router.push('/home');
       })
       .catch((error) => {
@@ -104,6 +106,36 @@ export default function FormMedia({ user }: { user: string | undefined }) {
     formData.append("title", values.title);
     const wavData = await transcode({ target: { files: [files.audio] } });
     formData.append("audio", wavData);
+    const subtitle = async () => {
+      const arquivoDeAudio = wavData; // Aqui você deve colocar seu arquivo de áudio (blob, Buffer, etc.)
+      
+      const url = 'https://brazilsouth.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1';
+      
+      const headers = {
+          'Content-Type': 'audio/wav',
+          'Ocp-Apim-Subscription-Key': '4e1f3ba069db4eadbd22b72379ac0582',
+          'Accept': 'application/json',
+          'Host': 'brazilsouth.stt.speech.microsoft.com',
+          'Transfer-Encoding': 'chunked',
+          'Expect': '100-continue',
+        };
+  
+      const params = {
+          language: 'pt-BR',
+        };
+  
+      const response = await axios.post(url, arquivoDeAudio, {
+        params,
+        headers,
+      });
+  
+      const {data} = response;
+      const  DisplayText = data.DisplayText;
+      
+      return DisplayText; // Retorno do texto interpretado
+    }
+    const subtitleResult = await subtitle();
+    formData.append("subtitle", subtitleResult); 
     // const subtitle = Fetch com a IA
     // formData.append("subtitle", subtitle);
     http
@@ -116,6 +148,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
       .then((res) => {
         setLoading(true);
         console.log(res.data);
+        window.alert("Áudio enviado com sucesso!");
       })
       .catch((error) => {
         console.log(error);
@@ -142,6 +175,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
         <>
           <TextInput name="title" label="Título" onChange={handleChange} />
           <FileInput name="audio" label="Audio" onChange={handleFileChange} />
+          <p className="border-gray-300 dark:bg-white dark:text-black w-full">Limite de 60s por áudio</p>
         </>
       )}
 
