@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../button/button";
 import http from "@/http";
 
 export default function Subtitle({
   subtitle,
   id,
+  title
 }: {
   subtitle: string;
   id: string;
+  title: string;
 }) {
   const [subtitleForm, setSubtitle] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  useEffect(() => {}, [subtitleForm]);
 
   const formattedSubtitle = subtitle.split("\n").map((line, index) => (
     <React.Fragment key={index}>
@@ -44,7 +48,7 @@ export default function Subtitle({
   return (
     <div className="p-4 m-4 flex flex-col gap-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg">Legenda</h1>
+        <h1 className="text-lg">{title}</h1>
         {!isEditing && (
           <button
             className="rounded-lg p-2 hover:text-neutral-600 dark:hover:text-neutral-300 transition-all"

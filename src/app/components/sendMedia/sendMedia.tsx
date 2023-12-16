@@ -3,26 +3,16 @@
 import { useState, useEffect } from "react";
 import FormMedia from "../form/FormMedia";
 import { useAuth } from "@/app/Providers/AuthContext";
+import { useModal } from "@/app/Providers/ModalContext";
 
-export default function SendMedia() {
+export default function SendMedia({ setShouldReload } : { setShouldReload: React.Dispatch<React.SetStateAction<boolean>> }) {
   const {user} = useAuth();
+  const { showModal, openModal, closeModal } = useModal() as {showModal: boolean, openModal: () => void, closeModal: () => void};
 
-  // Modal
-  const [showModal, setShowModal] = useState(false);
-  const openModal = () => {
-    setShowModal(true);
+  const handleSendMedia = () => {
+    closeModal();
+    setShouldReload(true);
   };
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  useEffect(() => {
-    if (showModal) {
-      document.body.style.overflow = "hidden"; // Desabilita o scroll
-    } else {
-      document.body.style.overflow = "unset"; // Habilita o scroll
-    }
-  }, [showModal]);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -40,7 +30,7 @@ export default function SendMedia() {
             </h1>
             <FormMedia user={user?.role} />
             <button
-              onClick={closeModal}
+              onClick={handleSendMedia}
               className="bg-white dark:bg-neutral-800 dark:text-white border-transparent border-2 border-solid hover:border-black dark:hover:border-white px-3 py-2 rounded-lg w-full text-center font-semibold text-black my-2"
             >
               Fechar

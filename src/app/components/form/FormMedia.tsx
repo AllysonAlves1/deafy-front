@@ -8,6 +8,7 @@ import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import http from "@/http";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 export default function FormMedia({ user }: { user: string | undefined }) {
   const [values, setValues] = useState({
@@ -21,6 +22,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     load();
@@ -93,8 +95,8 @@ export default function FormMedia({ user }: { user: string | undefined }) {
         },
       })
       .then(() => {
-        window.alert("Post enviado com sucesso!");
-        router.push('/home');
+        setMessage("Post enviado com sucesso!");
+        router.push("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -108,36 +110,35 @@ export default function FormMedia({ user }: { user: string | undefined }) {
     formData.append("audio", wavData);
     const subtitle = async () => {
       const arquivoDeAudio = wavData; // Aqui você deve colocar seu arquivo de áudio (blob, Buffer, etc.)
-      
-      const url = 'https://brazilsouth.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1';
-      
+
+      const url =
+        "https://brazilsouth.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1";
+
       const headers = {
-          'Content-Type': 'audio/wav',
-          'Ocp-Apim-Subscription-Key': '4e1f3ba069db4eadbd22b72379ac0582',
-          'Accept': 'application/json',
-          'Host': 'brazilsouth.stt.speech.microsoft.com',
-          'Transfer-Encoding': 'chunked',
-          'Expect': '100-continue',
-        };
-  
+        "Content-Type": "audio/wav",
+        "Ocp-Apim-Subscription-Key": "4e1f3ba069db4eadbd22b72379ac0582",
+        Accept: "application/json",
+        Host: "brazilsouth.stt.speech.microsoft.com",
+        "Transfer-Encoding": "chunked",
+        Expect: "100-continue",
+      };
+
       const params = {
-          language: 'pt-BR',
-        };
-  
+        language: "pt-BR",
+      };
+
       const response = await axios.post(url, arquivoDeAudio, {
         params,
         headers,
       });
-  
-      const {data} = response;
-      const  DisplayText = data.DisplayText;
-      
+
+      const { data } = response;
+      const DisplayText = data.DisplayText;
+
       return DisplayText; // Retorno do texto interpretado
-    }
+    };
     const subtitleResult = await subtitle();
-    formData.append("subtitle", subtitleResult); 
-    // const subtitle = Fetch com a IA
-    // formData.append("subtitle", subtitle);
+    formData.append("subtitle", subtitleResult);
     http
       .post("/audios/upload", formData, {
         headers: {
@@ -147,20 +148,20 @@ export default function FormMedia({ user }: { user: string | undefined }) {
       })
       .then((res) => {
         setLoading(true);
+        setMessage("Audio enviado com sucesso!");
         console.log(res.data);
-        window.alert("Áudio enviado com sucesso!");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
   return (
     <form
-      className="flex flex-col gap-4 w-full max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden p-4 mb-2"
+      className="flex flex-col gap-4 w-full max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden p-4 mb-2 items-center"
       onSubmit={(e) => {
         e.preventDefault();
-        if(user === "ADMIN") uploadPost();
+        if (user === "ADMIN") uploadPost();
         else uploadAudio();
       }}
     >
@@ -170,12 +171,26 @@ export default function FormMedia({ user }: { user: string | undefined }) {
           <SelectInput onChange={handleChange} />
           <FileInput name="image" label="Imagem" onChange={handleFileChange} />
           <FileInput name="audio" label="Audio" onChange={handleFileChange} />
+          {message && (
+            <div className="flex gap-2">
+              <CheckCircleIcon className="h-5 w-5 text-green-500" />
+              <p className="text-green-500 text-center text-sm">{message}</p>
+            </div>
+          )}
         </>
       ) : (
         <>
           <TextInput name="title" label="Título" onChange={handleChange} />
           <FileInput name="audio" label="Audio" onChange={handleFileChange} />
-          <p className="border-gray-300 dark:bg-white dark:text-black w-full">Limite de 60s por áudio</p>
+          <p className="border-gray-300 dark:bg-white dark:text-black w-full">
+            Limite de 60s por áudio
+          </p>
+          {message && (
+            <div className="flex gap-2">
+              <CheckCircleIcon className="h-5 w-5 text-green-500" />
+              <p className="text-green-500 text-center text-sm">{message}</p>
+            </div>
+          )}
         </>
       )}
 

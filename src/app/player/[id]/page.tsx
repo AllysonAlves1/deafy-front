@@ -58,7 +58,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
               image={audio.image}
               id={audio.id}
             />
-            <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id} />
+            <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id} title={audio.title}/>
           </>
         )}
       </div>

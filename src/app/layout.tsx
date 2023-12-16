@@ -6,6 +6,7 @@ import Providers from "./Providers/providers";
 import HeaderHome from "./components/header/header";
 import { AuthProvider } from "./Providers/AuthContext";
 import ProtectedRoute from "./Providers/ProtectedRoute";
+import { ModalProvider } from "./Providers/ModalContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +25,13 @@ export default function rootLayout({
           <AuthProvider>
             <ProtectedRoute>
               <Providers>
-                <HeaderHome />
-                <SideBar>
-                  {children}
-                  <NavBar />
-                </SideBar>
+                <ModalProvider>
+                  <HeaderHome />
+                  <SideBar>
+                    {children}
+                    <NavBar />
+                  </SideBar>
+                </ModalProvider>
               </Providers>
             </ProtectedRoute>
           </AuthProvider>
