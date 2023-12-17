@@ -25,11 +25,11 @@ export default function HomePage() {
     };
   
     const filterAudiosByAuthor = (author: string) => {
-      return audios.filter((audio) => audio.author.name === author);
+      return audios.filter((audio) => audio.author?.name === author);
     };
 
     const getUniqueAuthors = () => {
-      const allAuthors = audios.map((audio) => audio.author.name);
+      const allAuthors = audios.map((audio) => audio.author?.name);
       console.log(Array.from(new Set(allAuthors)))
       return Array.from(new Set(allAuthors));
     };
@@ -41,7 +41,7 @@ export default function HomePage() {
           <QuadradosSlider key={category} titulo={category} audios={filterAudiosByCategory(category)} /> // TODO: filtrar por categoria
         ))}
         {getUniqueAuthors().map((author) => (
-          <QuadradosSlider key={author} titulo={`Para fãs de ${formatAuthorName(author)}`} audios={filterAudiosByAuthor(author)} /> // TODO: filtrar por Autor
+          <QuadradosSlider key={author} titulo={`Para fãs de ${formatAuthorName(author || "")}`} audios={filterAudiosByAuthor(author || "")} /> // TODO: filtrar por Autor
         ))}
       </div>
     </RootLayout>
