@@ -7,7 +7,7 @@ export default function SelectInput({
 }) {
   return (
     <select
-      className="border-2 border-gray-300 text-zinc-400 dark:bg-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-white"
+      className="border-2 border-gray-300 text-zinc-400 dark:bg-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-white w-full"
       onChange={onChange}
       name="category"
     >

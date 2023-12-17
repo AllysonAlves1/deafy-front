@@ -14,7 +14,7 @@ export default function Subtitle({
   const [subtitleForm, setSubtitle] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(() => {}, [subtitleForm]);
+  useEffect(() => {}, [isEditing]);
 
   const formattedSubtitle = subtitle.split("\n").map((line, index) => (
     <React.Fragment key={index}>
@@ -62,9 +62,7 @@ export default function Subtitle({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            window.alert("Legenda salva com sucesso!");
             handleSaveClick();
-            window.location.reload();
           }}
           className="flex flex-col gap-4"
         >

@@ -88,7 +88,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
     formData.append("audio", files.audio);
     formData.append("image", files.image);
     http
-      .post("audios/posts/upload", formData, {
+      .post("/audios/posts/upload", formData, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
