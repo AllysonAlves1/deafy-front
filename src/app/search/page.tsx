@@ -1,8 +1,6 @@
 'use client'
-import { useEffect, useState } from "react";
 import SearchBar from "../components/searchbar/searchBar";
 import RootLayout from "../layout";
-import http from "@/http";
 
 export default function SearchPage() {
   const layoutProps = true;

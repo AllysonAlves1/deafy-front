@@ -15,7 +15,6 @@ export default function HomePage() {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
-        console.log(res.data);
         setAudios(res.data);
       });
   }, []);
@@ -30,29 +29,26 @@ export default function HomePage() {
 
   const getUniqueAuthors = () => {
     const allAuthors = audios.map((audio) => audio.author?.name);
-    console.log(Array.from(new Set(allAuthors)));
     return Array.from(new Set(allAuthors));
   };
 
   return (
     <RootLayout layoutProps={layoutProps}>
       <div className="min-h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col mt-20 mb-8 md:mb-0">
-        <div className="">
-          {["MUSIC", "PODCAST", "AUDIOBOOK"].map((category) => (
-            <QuadradosSlider
-              key={category}
-              titulo={category}
-              audios={filterAudiosByCategory(category)}
-            /> // TODO: filtrar por categoria
-          ))}
-          {getUniqueAuthors().map((author) => (
-            <QuadradosSlider
-              key={author}
-              titulo={`Para fãs de ${formatAuthorName(author || "")}`}
-              audios={filterAudiosByAuthor(author || "")}
-            /> // TODO: filtrar por Autor
-          ))}
-        </div>
+        {["MUSIC", "PODCAST", "AUDIOBOOK"].map((category) => (
+          <QuadradosSlider
+            key={category}
+            titulo={category}
+            audios={filterAudiosByCategory(category)}
+          /> // TODO: filtrar por categoria
+        ))}
+        {getUniqueAuthors().map((author) => (
+          <QuadradosSlider
+            key={author}
+            titulo={`Para fãs de ${formatAuthorName(author || "")}`}
+            audios={filterAudiosByAuthor(author || "")}
+          /> // TODO: filtrar por Autor
+        ))}
       </div>
     </RootLayout>
   );

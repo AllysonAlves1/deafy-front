@@ -55,7 +55,7 @@ export default function Register() {
                     router.push("/login");
                   })
                   .catch((error) => {
-                    console.log(error);
+                    console.error(error);
                     alert("Preencha todos os campos!");
                   });
               }}

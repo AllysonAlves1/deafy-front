@@ -36,11 +36,10 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
-        console.log(res.data);
         setAudio(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       }).finally(() => {
         setShouldReload(false);
       });
