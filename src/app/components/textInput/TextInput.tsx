@@ -12,6 +12,7 @@ export default function TextInput({ name, label, onChange }: InputProps) {
       placeholder={label}
       className="border-2 border-gray-300 dark:bg-white p-3 rounded-lg dark:text-black w-full"
       onChange={onChange}
+      required
     />
   );
 }

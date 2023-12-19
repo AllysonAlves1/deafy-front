@@ -83,7 +83,7 @@ export default function ProfilePage() {
               alt="generico"
             />
             <FileInput name="image" label="" onChange={handleFileChange} />
-            <TextInput name="name" label="Nome" onChange={handleChange} />
+            <TextInput name="name" label="Nome" onChange={handleChange}/>
             <Button nome="Alterar" type="submit"/>
           </form>
           {message && <><p className="text-center text-green-500 w-[30ch]">{message.sucess}</p>
