@@ -11,6 +11,7 @@ export default function SelectInput({
       onChange={onChange}
       name="category"
     >
+      <option></option>
       <option value="MUSIC">Música</option>
       <option value="PODCAST">Podcast</option>
       <option value="AUDIOBOOK">Audiobook</option>

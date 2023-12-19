@@ -5,11 +5,13 @@ import http from "@/http";
 export default function Subtitle({
   subtitle,
   id,
-  title
+  title,
+  setShouldReload,
 }: {
   subtitle: string;
   id: string;
   title: string;
+  setShouldReload: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [subtitleForm, setSubtitle] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -43,10 +45,11 @@ export default function Subtitle({
       }
     );
     setIsEditing(false);
+    setShouldReload(true);
   }
 
   return (
-    <div className="p-4 m-4 flex flex-col gap-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg">
+    <div className="p-4 m-4 flex flex-col gap-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg mb-20">
       <div className="flex justify-between items-center">
         <h1 className="text-lg">{title}</h1>
         {!isEditing && (

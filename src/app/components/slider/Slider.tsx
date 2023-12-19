@@ -13,11 +13,21 @@ interface SliderProps {
 
 const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
   const settings: Settings = {
+    dots: true,
     infinite: false,
     speed: 300,
-    slidesToShow: 6,
+    slidesToShow: 7,
     slidesToScroll: 1,
+    initialSlide: 0,
     responsive: [
+      {
+        breakpoint: 1441,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
       {
         breakpoint: 1024,
         settings: {
@@ -72,7 +82,7 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
   return (
     <div className="flex flex-col p-4">
       <h2 className="text-3xl font-bold mb-4">{titulo}</h2>
-      <Slider {...settings} className="">
+      <Slider {...settings}>
         {audios.map((audio: any) => (
           <Audio
             key={audio.id}

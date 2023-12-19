@@ -26,10 +26,12 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
       name: "",
     },
   });
+  const [shouldReload, setShouldReload] = useState(true);
 
   useEffect(() => {
     const id = params.id;
-    http
+    if(shouldReload) {
+      http
       .get(`/audios/${id}`, {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       })
@@ -39,8 +41,12 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
       })
       .catch((error) => {
         console.log(error);
+      }).finally(() => {
+        setShouldReload(false);
       });
-  }, []);
+    }
+   
+  }, [shouldReload]);
 
   // Verifica se todos os campos de áudio necessários estão preenchidos
   const isAudioReady = audio.id !== "" && audio.audio !== "" && audio.title !== "";
@@ -58,7 +64,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
               image={audio.image}
               id={audio.id}
             />
-            <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id} title={audio.title}/>
+            <Subtitle subtitle={audio.subtitle ?? ""} id={audio.id} title={audio.title} setShouldReload={setShouldReload}/>
           </>
         )}
       </div>

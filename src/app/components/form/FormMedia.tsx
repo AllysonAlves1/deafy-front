@@ -87,6 +87,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
     formData.append("category", values.category);
     formData.append("audio", files.audio);
     formData.append("image", files.image);
+    formData.append("subtitle", "");
     http
       .post("/audios/posts/upload", formData, {
         headers: {
