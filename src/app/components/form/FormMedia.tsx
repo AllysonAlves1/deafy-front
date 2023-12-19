@@ -23,6 +23,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     load();
@@ -82,6 +83,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
   };
 
   const uploadPost = async () => {
+    setDisabled(true);
     const formData = new FormData();
     formData.append("title", values.title);
     formData.append("category", values.category);
@@ -105,6 +107,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
   };
 
   const uploadAudio = async () => {
+    setDisabled(true);
     const formData = new FormData();
     formData.append("title", values.title);
     const wavData = await transcode({ target: { files: [files.audio] } });
@@ -150,7 +153,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
       .then((res) => {
         setLoading(true);
         setMessage("Audio enviado com sucesso!");
-        console.log(res.data);
+        setDisabled(false);
       })
       .catch((error) => {
         console.error(error);
@@ -195,7 +198,7 @@ export default function FormMedia({ user }: { user: string | undefined }) {
         </>
       )}
 
-      <Button nome="Enviar" type="submit" />
+      <Button nome="Enviar" type="submit" disabled={disabled}/>
     </form>
   );
 }
