@@ -4,7 +4,7 @@ interface ButtonProps {
   nome: string;
   type?: 'submit' | 'button' | 'reset';
   onClick?: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export default function Button( { nome, onClick, type = 'button', disabled }: ButtonProps ) {
