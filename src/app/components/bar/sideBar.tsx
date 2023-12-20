@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function SideBar({ children }: any) {
   return (
     <div className="flex">
-      <div className="min-h-screen hidden md:flex bg-slate-800 p-4 mt-20 md:w-[25%] lg:w-[20%] xl:w-[15%] min-[1440px]:w-[12%]">
+      <div className="min-h-screen hidden md:flex bg-slate-800 p-4 mt-20 md:w-[25%] lg:w-[20%] xl:w-[15%] min-[1920px]:w-[12%] min-[2560px]:w-[10%]">
         <div className="flex flex-col gap-10 py-6">
           <Link href="/home">
             <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ export default function SideBar({ children }: any) {
           </Link>
         </div>
       </div>
-      <main className="w-full md:w-[75%] lg:w-[80%] xl:w-[85%] min-[1440px]:w-[88%]">{children}</main>
+      <main className="w-full md:w-[75%] lg:w-[80%] xl:w-[85%] min-[1920px]:w-[88%] min-[2560px]:w-[90%]">{children}</main>
     </div>
   );
 }

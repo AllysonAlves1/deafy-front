@@ -13,7 +13,7 @@ interface SliderProps {
 
 const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
   const settings: Settings = {
-    dots: true,
+    lazyLoad: "ondemand",
     infinite: false,
     speed: 300,
     slidesToShow: 7,
@@ -21,7 +21,7 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1441,
+        breakpoint: 1921,
         settings: {
           slidesToShow: 6,
           slidesToScroll: 1,
@@ -29,7 +29,15 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1441,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 1025,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1,
@@ -37,7 +45,7 @@ const QuadradosSlider = ({ titulo, audios }: SliderProps) => {
         },
       },
       {
-        breakpoint: 767,
+        breakpoint: 768,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
