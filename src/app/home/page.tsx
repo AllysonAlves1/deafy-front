@@ -35,13 +35,13 @@ export default function HomePage() {
   return (
     <RootLayout layoutProps={layoutProps}>
       <div className="min-h-screen bg-neutral-200 dark:bg-neutral-900 p-4 flex flex-col mt-20 mb-8 md:mb-0">
-        {["MUSIC", "PODCAST", "AUDIOBOOK"].map((category) => (
+        {/* {["MUSIC", "PODCAST", "AUDIOBOOK"].map((category) => (
           <QuadradosSlider
             key={category}
             titulo={category}
             audios={filterAudiosByCategory(category)}
           /> // TODO: filtrar por categoria
-        ))}
+        ))} */}
         {getUniqueAuthors().map((author) => (
           <QuadradosSlider
             key={author}
